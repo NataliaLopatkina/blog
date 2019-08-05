@@ -1,0 +1,8 @@
+mixin posts-item(obj)
+    div(class="posts-item")
+        a(class="posts-item__title" href="#5") !{obj.title}
+        p(class="posts-item__text") !{obj.text}
+        div(class="posts-item__information")
+            p(class="posts-item__author") Posted by
+                a(class="posts-item__user" href="#5") !{obj.user}
+            time(class="post-item__date" datetime="2012-12-23") !{obj.time}

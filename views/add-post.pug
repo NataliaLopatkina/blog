@@ -1,0 +1,21 @@
+extends blocks/template-home/template-home.pug
+
+block data
+    -
+        var data = {
+            activeElement: "Add post",
+            script: "add-post",
+        }
+
+block content
+    div(class="posts-content")
+        div(class="add-post")
+            h1(class="add-post__title") Add post
+            form(class="form add-post__form" onsubmit="return false")
+                div(class="form__item")
+                    label(for="title" class="form__label") Title
+                    input(type="text" class="form__input" id="title" placeholder="Title")
+                div(class="form__item")
+                    label(for="text-post" class="form__label") Text
+                    textarea(class="form__input add-post__input" id="text-post" placeholder="Enter text")
+                button(class="button add-post__button") Add post

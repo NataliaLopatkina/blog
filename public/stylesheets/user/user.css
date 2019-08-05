@@ -1,0 +1,21 @@
+@import "../user-like/user-like.css";
+
+.user {
+    box-shadow: 0 0 10px var(--main-color);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user__name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.user__date-registration {
+    font-size: 18px;
+    font-weight: 500;
+}

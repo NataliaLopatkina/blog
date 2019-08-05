@@ -1,0 +1,8 @@
+mixin user(obj)
+    div(class="user")&attributes(attributes)
+        div(class="user__information")
+            p(class="user__name") !{obj.name}
+            time(class="user__date-registration" datetime="2012-12-23") !{obj.date}
+        button(class="user-like" type="button")
+            img(class="user-like__image user-like__image--not-active" src="../images/like.svg" alt="Like")
+            img(class="user-like__image user-like__image--active" src="../images/like-active.svg" alt="Like")

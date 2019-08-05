@@ -1,0 +1,91 @@
+.form {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 35px;
+    box-sizing: border-box;
+    margin: auto;
+    box-shadow: 0 0 10px rgb(100, 151, 177);
+    border-radius: 10px;
+}
+
+.form__title {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.form__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form__item::last-child {
+    margin-bottom: 20px;
+}
+
+.form__label {
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.form__input {
+    font-family: "El Messiri", "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--main-color);
+    width: calc(100% - 12px);
+    padding: 10px 5px;
+    outline: none;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+}
+
+.form__input::placeholder {
+    color: var(--main-color);
+    opacity: 0.5;
+}
+
+.form__input:hover,
+.form__input:focus {
+    box-shadow: 0 0 8px rgba(100, 151, 177, 0.5);
+}
+
+.form__password {
+    position: relative;
+}
+
+.form__password-button {
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 15px;
+    margin: auto;
+}
+
+.form__password-button.not-show {
+    opacity: 0.5;
+}
+
+.form__password-button.not-show:after {
+    content: '/';
+    font-size: 35px;
+    color: var(--main-color);
+    position: absolute;
+    top: 2px;
+    right: 3px;
+}
+
+.form__password-img {
+    width: 25px;
+}

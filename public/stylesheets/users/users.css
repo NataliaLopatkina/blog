@@ -1,0 +1,9 @@
+@import "../user/user.css";
+
+.users {
+    
+}
+
+.users__item {
+    margin-bottom: 20px;
+}

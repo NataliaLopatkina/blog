@@ -1,0 +1,35 @@
+.button {
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #ffffff;
+    background: var(--main-color);
+    padding: 10px 5px;
+    border: 1px solid var(--main-color);
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    transition-property: background, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+}
+
+.button--more {
+    max-width: 200px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    display: none;
+}
+
+.button--more.active {
+    display: block;
+}
+
+.button:hover {
+    background: #ffffff;
+    color: var(--main-color);
+}

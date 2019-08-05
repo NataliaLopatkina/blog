@@ -1,0 +1,20 @@
+block data
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="initial-scale=1.0, width=device-width")
+        title Blog
+        link(href="https://fonts.googleapis.com/css?family=El+Messiri:400,500,600,700&display=swap&subset=cyrillic" rel="stylesheet")
+        link(rel="stylesheet" href="stylesheets/common.css")
+
+        body(class="page")
+            div(class="page__container")
+                main(class="main")
+                    div(class="box")
+                        block content
+
+            script(src="https://unpkg.com/axios/dist/axios.min.js")
+            script(src="javascripts/script.js")
+            script(src="javascripts/" + data.script + ".js")

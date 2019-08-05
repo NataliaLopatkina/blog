@@ -1,0 +1,25 @@
+.add-post {
+    
+}
+
+.add-post__title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.add-post__form {
+    max-width: 100%;
+    padding: 0;
+    box-shadow: none;
+}
+
+.add-post__input {
+    resize: none;
+    min-height: 100px;
+}
+
+.add-post__button {
+    max-width: 100px;
+    margin-left: auto;
+}

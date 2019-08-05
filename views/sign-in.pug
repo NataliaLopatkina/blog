@@ -1,0 +1,17 @@
+extends blocks/template-authentication/template-authentication.pug
+
+block data
+    -
+        var data = {
+            script: "sign-in",
+        }
+
+block content
+    div(class="authentication authentication--position")
+        include blocks/form/form.pug
+        +form({
+            title: "Sign-in",
+            labelUser: "Login",
+            labelPassword: "Password",
+            buttonSignIn: true,
+        })

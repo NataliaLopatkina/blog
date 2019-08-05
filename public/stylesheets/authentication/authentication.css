@@ -1,0 +1,12 @@
+@import "../form/form.css";
+
+.authentication {
+    
+}
+
+.authentication--position {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+}

@@ -1,0 +1,8 @@
+mixin filter(obj)
+    div(class="filter")&attributes(attributes)
+        h3(class="filter__title") !{obj.title}
+        ul(class="filter__list")
+            li(class="filter__item")
+                button(class="button filter__button") !{obj.firstTypeSort}
+            li(class="filter__item")
+                button(class="button filter__button") !{obj.secondTypeSort}

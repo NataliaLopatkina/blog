@@ -1,0 +1,10 @@
+@import "../box/box.css";
+@import "../authentication/authentication.css";
+@import "../button/button.css";
+@import "../header/header.css";
+@import "../posts/posts.css";
+
+.page {
+    font-family: "El Messiri", "Times New Roman", serif;
+    color: var(--main-color);
+}

@@ -1,0 +1,6 @@
+@import "normalize/normalize.css";
+@import "reset/reset.css";
+@import "vars-color/vars-color.css";
+
+/* Styles */
+@import "page/page.css";
