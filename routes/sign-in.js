@@ -1,6 +1,7 @@
 const { User } = require('../sequelize');
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 router.get('/', function (req, res) {
     res.render('../views/sign-in');
@@ -16,8 +17,14 @@ router.post('/', async function (req, res) {
     }
 
     else {
-        console.log("ok")
-        res.redirect('sign-up');
+        console.log("ok");
+
+        const token = jwt.sign({
+            data: req.body.login
+        }, 'secret', { expiresIn: '1h' });
+
+        res.cookie('token', token,  { maxAge: 900000, httpOnly: true });
+        res.redirect('home');
     }
 });
 

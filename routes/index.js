@@ -1,11 +1,9 @@
-const usersRouter = require("./users");
-const signupRouter = require("./sign-up");
-const signinRouter = require("./sign-in");
-const addPostRouter = require('./posts');
+const signUpRouter = require('./sign-up');
+const signInRouter = require('./sign-in');
+const homeRouter = require('./home');
 
 module.exports = {
-    usersRouter, 
-    signupRouter,
-    signinRouter,
-    addPostRouter,
+    signUpRouter,
+    signInRouter,
+    homeRouter,
 }

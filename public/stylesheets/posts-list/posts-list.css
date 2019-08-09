@@ -1,4 +1,4 @@
-@import "../posts-item/posts-item.css";
+@import "../post/post.css";
 
 .posts-list {
     display: flex;

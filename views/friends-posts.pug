@@ -26,7 +26,7 @@ block content
         })(class="posts-content__filter")
 
         div(class="posts-list")
-            include blocks/posts-item/posts-item.pug
+            include blocks/posts-item/post-item.pug
             -
                 var posts = [
                     {
@@ -66,6 +66,6 @@ block content
                 ]
 
             each obj in posts
-                +posts-item(obj)
+                +post(obj)
 
         button(class="button button--more" type="button") Show more

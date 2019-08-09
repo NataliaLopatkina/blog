@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const { usersRouter, signupRouter, signinRouter, addPostRouter } = require('./routes');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const varifyToken = require('./middelwares/verify-token');
+const { signUpRouter, signInRouter, homeRouter } = require('./routes');
 
 app.use(cors());
-app.use(cookieParser());
 app.use(bodyParser());
+app.use(cookieParser());
 app.use(express.static('public'));
 
 app.set('view engine', 'pug');
@@ -15,9 +17,8 @@ app.set('views', './views');
 
 app.listen(3000);
 
-app.use('/sign-up', signupRouter);
-app.use('/sign-in', signinRouter);
-app.use('/users', usersRouter);
-app.use('/add-post', addPostRouter);
+app.use('/', signInRouter);
+app.use('/sign-up', varifyToken, signUpRouter);
+app.use('/home', homeRouter);
 
 module.exports = app;
