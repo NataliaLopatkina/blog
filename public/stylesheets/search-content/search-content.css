@@ -1,0 +1,37 @@
+.search-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 66px;
+    left: 300px; 
+    max-width: calc(100% - 300px);
+    width: 100%;
+    padding: 25px 25px 0 25px;
+    box-sizing: border-box;
+}
+
+.search-content__form {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 991px) {
+    .search-content {
+        max-width: calc(100% - 250px);
+        left: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-content {
+        padding: 20px 10px;
+        max-width: calc(100% - 200px);
+        left: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-content {
+        max-width: 100%;
+        left: 0;
+    }
+}

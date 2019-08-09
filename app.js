@@ -18,7 +18,7 @@ app.set('views', './views');
 app.listen(3000);
 
 app.use('/', signInRouter);
-app.use('/sign-up', varifyToken, signUpRouter);
+app.use('/sign-up', signUpRouter);
 app.use('/home', homeRouter);
 
 module.exports = app;

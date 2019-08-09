@@ -2,14 +2,19 @@ const { User } = require('../sequelize');
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
+    dialect: 'postgres',
+});
 
 router.get('/', function (req, res) {
     res.render('../views/sign-in');
 });
 
 router.post('/', async function (req, res) {
-
-    const user = await User.findOne({where: {name: req.body.login, password: req.body.password}});
+    const user = await User.findOne({where: {email: req.body.email, password: req.body.password}});
+    //const user = await sequelize.query(`SELECT FROM users WHERE name = '${req.body.login}', password = '${req.body.password}'`)
 
     if (!user) {
         console.log("Incorrected login or password!");
@@ -17,14 +22,13 @@ router.post('/', async function (req, res) {
     }
 
     else {
-        console.log("ok");
-
+        console.log("Ok");
+        
         const token = jwt.sign({
-            data: req.body.login
+            data: req.body.email
         }, 'secret', { expiresIn: '1h' });
 
-        res.cookie('token', token,  { maxAge: 900000, httpOnly: true });
-        res.redirect('home');
+        res.cookie('token', token, { maxAge: 900000, httpOnly: true });
     }
 });
 

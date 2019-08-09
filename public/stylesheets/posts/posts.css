@@ -1,5 +1,6 @@
 @import "../nav/nav.css";
 @import "../posts-content/posts-content.css";
+@import "../search-content/search-content.css";
 
 .posts {
     display: flex;

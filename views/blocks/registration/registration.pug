@@ -1,6 +1,11 @@
 mixin registration()
     div(class="registration")
         p(class="registration__text") Create your own profile
-        button(class="button registration__button") Sign-up
+
+        include ../button/button.pug
+        +button({
+            type: "button",
+            text: "Sign-up",
+        })(class="registration__button")
 
     // END .registration

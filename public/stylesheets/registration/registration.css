@@ -1,0 +1,9 @@
+.registration {
+    padding-top: 15px;
+}
+
+.registration__text {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}

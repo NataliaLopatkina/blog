@@ -8,7 +8,7 @@ const varifyToken = function(req, res, next) {
             res.user = decoded;
             return next();
         } else {
-            return res.redirect('/sign-in')
+            return res.redirect('/')
         }
     });
 }

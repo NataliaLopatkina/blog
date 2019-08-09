@@ -1,18 +1,33 @@
-.filter {
-    
-}
-
-.filter__title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
 .filter__list {
     list-style: none;
     display: flex;
+    padding-left: 30px;
 }
 
 .filter__item {
-    margin-right: 10px;
+    margin-right: 50px;
+}
+
+.filter__input {
+    display: none;
+}
+
+.filter__label {
+    position: relative;
+}
+
+.filter__label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--main-color);
+    cursor: pointer;
+}
+
+.filter__input:checked + .filter__label:before {
+    background: var(--main-color);
 }

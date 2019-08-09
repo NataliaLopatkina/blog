@@ -1,10 +1,27 @@
-mixin filter(obj)
+mixin filter()
     div(class="filter")&attributes(attributes)
-        h3(class="filter__title") !{obj.title}
         ul(class="filter__list")
-            li(class="filter__item")
-                button(class="button filter__button") !{obj.firstTypeSort}
-            li(class="filter__item")
-                button(class="button filter__button") !{obj.secondTypeSort}
+            -
+                var navList = [
+                    {
+                        name: "name",
+                    },
 
-    // END .filter
+                    {
+                        name: "data",
+                    },
+
+                    {
+                        name: "ascending",
+                    },
+
+                    {
+                        name: "descending",
+                    },
+                ]
+
+            each item in navList
+
+                li(class="filter__item")
+                    input(class="filter__input" type="checkbox" name=item.name id=item.name) 
+                    label(class="filter__label" for=item.name) !{item.name}

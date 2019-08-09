@@ -3,8 +3,14 @@ extends blocks/template-home/template-home.pug
 block data
     -
         var data = {
-            activeElement: "Friends posts",
+            activeElement: "",
         }
 
 block content
-    h1() Home
+    div(class="search-content")
+
+        include blocks/search/search.pug
+        +search(obj)(class="search-content__form")
+
+        include blocks/filter/filter.pug
+        +filter()

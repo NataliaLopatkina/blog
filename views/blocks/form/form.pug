@@ -2,19 +2,24 @@ mixin form(obj)
     div(class="form")&attributes(attributes)
         form(class="form__content" onsubmit="return false")
             h1(class="form__title") !{obj.title}
-            div(class="form__item")
-                label(for="name" class="form__label") !{obj.labelUser}
-                input(type="text" class="form__input" id="name" placeholder="John" value="John" required)
-            if (obj.signOut)
+            if (obj.signUp)
                 div(class="form__item")
-                    label(for="email" class="form__label") !{obj.labelEmail}
-                    input(type="email" class="form__input" id="email" placeholder="john@yandex.ru" value="alex@mail.com" required)
+                    label(for="name" class="form__label") !{obj.labelUser}
+                    input(type="text" class="form__input" id="name" placeholder="John" required)
+            
+            div(class="form__item")
+                label(for="email" class="form__label") !{obj.labelEmail}
+                input(type="email" class="form__input" id="email" placeholder="john@yandex.ru" required)
             div(class="form__item")
                 label(for="password" class="form__label") !{obj.labelPassword}
                 div(class="form__password")
-                    input(type="password" class="form__input" id="password" placeholder="12345678" value="qwerty1234" minlength="6" required)
+                    input(type="password" class="form__input" id="password" placeholder="12345678" minlength="6" required)
                     button(class="form__password-button" button="type")
-                        img(class="form__password-img" src="images/eye.svg" alt="Show password")
-            button(class="button form__button-send" type="submit") Send
+                        img(class="form__password-img" src="images/svg-icon/eye.svg" alt="Show password")
+            include ../button/button.pug
+            +button({
+                type: "submit",
+                text: "Send",
+            })(class="form__button-send")
 
     // END .form
