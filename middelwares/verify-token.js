@@ -5,7 +5,7 @@ const varifyToken = function(req, res, next) {
 
     jwt.verify(token, 'secret', function(err, decoded) {
         if (decoded) {
-            res.user = decoded;
+            req.user = decoded;
             return next();
         } else {
             return res.redirect('/')

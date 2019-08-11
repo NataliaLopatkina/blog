@@ -1,0 +1,28 @@
+.incorrected {
+    background: rgba(225, 36, 0, 0.3);
+    padding: 10px 20px;
+    border: 1px solid red;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    display: none;
+}
+
+.incorrected.active {
+    display: flex;
+}
+
+.incorrected__text {
+    font-size: 18px;
+    color: red;
+}
+
+.incorrected__button {
+    font-family: 'Arial';
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+}

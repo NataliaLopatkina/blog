@@ -9,17 +9,22 @@
 
 .search__form {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 }
 
 .search__input {
     margin: 0;
-    width: calc(100% - 100px);
+    width: calc(100% - 112px);
 }
 
 .search__button {
     max-width: 100px;
     width: 100%;
+}
+
+.search__filter {
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {

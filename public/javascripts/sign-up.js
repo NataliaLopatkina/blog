@@ -4,8 +4,12 @@ class DataService {
     sendData(data) {
         axios.post('http://localhost:3000/sign-up', data)
 
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
+        .then(response => {
+            window.location.assign('/')
+        })
+        .catch(error => {
+            console.log(error)
+        });
     }
 }
 
@@ -14,40 +18,54 @@ let dataService = new DataService()
 const buttonSend = document.querySelector('.form__button-send');
 
 buttonSend.addEventListener('click', () => {
-    const fieldEntry = document.querySelectorAll('input');
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const data = { name: name, email: email, password: password };
+    const data = { name: name, email: email, password: password};
 
     dataService.sendData(data);
-
-    fieldEntry.forEach((item) => {
-
-        if (item.value !== '') {
-            window.location.assign('/')
-
-        } else {
-            error.addErrorBox();
-        }
-    })
 })
 
-class Error {
+class ErrorMessage {
     constructor() {}
 
-    addErrorBox() {
-        const authenticationBox = document.querySelector('.authentication')
-        const errorBox = document.createElement('div');
-        const errorText = document.createElement('p');
-        const form = document.querySelector('.form');
+    addErrorMessage() {
+        const error = document.querySelector('.error');
+        const errorEmail = document.querySelector('.error--email');
+        const errorPassword = document.querySelector('.error--password')
+        const inputName = document.getElementById('name');
+        const inputEmail = document.getElementById('email');
+        const inputPassword = document.getElementById('password');
 
-        authenticationBox.insertBefore(errorBox, form);
-        errorBox.classList.add('error');
-        errorBox.appendChild(errorText);
-        errorText.classList.add('error__text');
-        errorText.innerText = 'Enter you data';
+        if(!inputName.validity.valid) {
+            error.innerText = 'Name are required!';
+            inputName.classList.add('invalid');
+            error.classList.add('active')
+        } else{
+            false;
+        }
+    
+        if(!inputEmail.validity.valid) {
+            errorEmail.innerText = 'Email are required!';
+            inputEmail.classList.add('invalid');
+            errorEmail.classList.add('active')
+        } else{
+            false;
+        }
+    
+        if(!inputPassword.validity.valid) {
+            errorPassword.innerText = 'Password are required!';
+            inputPassword.classList.add('invalid');
+            errorPassword.classList.add('active')
+        } else{
+            false;
+        }
     }
 }
 
-let error = new Error();
+let errorMessage = new ErrorMessage();
+
+const form = document.querySelector('.form__content');
+form.addEventListener('submit', (event)=> {
+    errorMessage.addErrorMessage();
+})

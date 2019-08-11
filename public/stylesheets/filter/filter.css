@@ -1,4 +1,4 @@
-.filter__list {
+.filter {
     list-style: none;
     display: flex;
     padding-left: 30px;
@@ -24,6 +24,7 @@
     display: block;
     width: 16px;
     height: 16px;
+    border-radius: 50%;
     border: 2px solid var(--main-color);
     cursor: pointer;
 }

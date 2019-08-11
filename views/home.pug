@@ -4,13 +4,17 @@ block data
     -
         var data = {
             activeElement: "",
+            script: "home",
         }
 
 block content
     div(class="search-content")
 
         include blocks/search/search.pug
-        +search(obj)(class="search-content__form")
+        +search(obj)(class="search-content__form") 
 
-        include blocks/filter/filter.pug
-        +filter()
+        div(class="users")
+
+        div(class="error error--user")
+            p(class="error__text") User not found!
+

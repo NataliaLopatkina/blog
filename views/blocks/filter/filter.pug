@@ -1,27 +1,16 @@
 mixin filter()
     div(class="filter")&attributes(attributes)
-        ul(class="filter__list")
-            -
-                var navList = [
-                    {
-                        name: "name",
-                    },
+        div(class="filter__item")
+            input(class="filter__input" type="radio" name="name" id="name") 
+            label(class="filter__label" for="name") Name
+        div(class="filter__item")    
+            input(class="filter__input" type="radio" name="name" id="date") 
+            label(class="filter__label" for="date") Date
+        div(class="filter__item")
+            input(class="filter__input" type="radio" name="sort" id="ascending") 
+            label(class="filter__label" for="ascending") Ascending
+        div(class="filter__item")
+            input(class="filter__input" type="radio" name="sort" id="descending") 
+            label(class="filter__label" for="descending") Descending        
 
-                    {
-                        name: "data",
-                    },
-
-                    {
-                        name: "ascending",
-                    },
-
-                    {
-                        name: "descending",
-                    },
-                ]
-
-            each item in navList
-
-                li(class="filter__item")
-                    input(class="filter__input" type="checkbox" name=item.name id=item.name) 
-                    label(class="filter__label" for=item.name) !{item.name}
+    // END .filter               

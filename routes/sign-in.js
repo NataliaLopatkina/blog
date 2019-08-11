@@ -18,7 +18,7 @@ router.post('/', async function (req, res) {
 
     if (!user) {
         console.log("Incorrected login or password!");
-        res.send('Incorrect login or password');
+        res.sendStatus(402);
     }
 
     else {
@@ -29,6 +29,7 @@ router.post('/', async function (req, res) {
         }, 'secret', { expiresIn: '1h' });
 
         res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+        res.sendStatus(200);
     }
 });
 

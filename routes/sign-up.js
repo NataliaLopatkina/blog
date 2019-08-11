@@ -10,15 +10,22 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
     dialect: 'postgres',
 });
 
-router.post('/', function (req, res) {
-    sequelize.query(`INSERT INTO users (name, email, password, "createdAt","updatedAt") VALUES('${req.body.name}',
-     '${req.body.email}', '${req.body.password}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`)
+router.post('/', function (req, res, next) {
 
-    .then(result => {
-        console.log(result);
-    }).catch(err => {
-        console.log(err);
-    })
+    const {password, name, email} = req.body;
+
+    if (password === '' || name === '' ||  email === '') {
+        res.status(422).send('Password, email, name are required!');
+    } else {
+        sequelize.query(`INSERT INTO users (name, email, password, "createdAt","updatedAt") VALUES('${name}',
+        '${email}', '${password}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`)
+
+        .then(result => {
+            res.sendStatus(201);
+        }).catch(err => {
+        return next(err);
+        })
+    }
 });
 
 module.exports = router;

@@ -1,21 +1,28 @@
 mixin form(obj)
     div(class="form")&attributes(attributes)
-        form(class="form__content" onsubmit="return false")
+        form(class="form__content" onsubmit="return false" novalidate)
             h1(class="form__title") !{obj.title}
+            if (obj.signIn)
+                div(class="incorrected")
+                    span(class="incorrected__text") Incorrected email or password!
+                    button(class="incorrected__button") X
             if (obj.signUp)
                 div(class="form__item")
                     label(for="name" class="form__label") !{obj.labelUser}
                     input(type="text" class="form__input" id="name" placeholder="John" required)
-            
+                    span(class="error")
             div(class="form__item")
                 label(for="email" class="form__label") !{obj.labelEmail}
                 input(type="email" class="form__input" id="email" placeholder="john@yandex.ru" required)
+                span(class="error error--email")
             div(class="form__item")
                 label(for="password" class="form__label") !{obj.labelPassword}
                 div(class="form__password")
                     input(type="password" class="form__input" id="password" placeholder="12345678" minlength="6" required)
                     button(class="form__password-button" button="type")
                         img(class="form__password-img" src="images/svg-icon/eye.svg" alt="Show password")
+                span(class="error error--password")
+
             include ../button/button.pug
             +button({
                 type: "submit",

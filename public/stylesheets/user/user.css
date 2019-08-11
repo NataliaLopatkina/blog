@@ -12,7 +12,15 @@
 .user__name {
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 10px;
+}
+
+.user__following {
+    background: url('../../images/svg-icon/like.svg');
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 .user__date-registration {
