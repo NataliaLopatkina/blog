@@ -5,6 +5,7 @@ class DataService {
         axios.get('http://localhost:3000/users', {
          params: {
             keyword,
+            sortBy,
           }})
 
         .then(response => {
@@ -29,8 +30,9 @@ class DataService {
                 errorMessage.classList.remove('active');
             }
 
-
+            sort.getSortType(sortBy);
         })
+
         .catch(error => console.log(error));
     }
 }
@@ -72,3 +74,16 @@ class User {
 }
 
 let user = new User();
+
+class Sort {
+    constructor()
+
+    getSortType(sortBy) {
+        const event = event.target;
+        const sortBy = event.getAttribute(data-sort);
+
+        console.log(sortBy)
+    }
+}
+
+let sort = new Sort();

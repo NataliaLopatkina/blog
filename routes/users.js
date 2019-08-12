@@ -1,17 +1,19 @@
 var express = require('express');
 var router  = express.Router();
 const Sequelize = require('sequelize');
+const { User } = require('../sequelize');
 
 const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
     dialect: 'postgres',
 });
 
 router.get('/', async function(req, res) {
-    const result = await sequelize.query(`SELECT*FROM users WHERE name ILIKE '%${req.query.keyword}%'`);
+    const sortType = 'ASC';
+    const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${req.query.keyword}%' ORDER BY name ${sortType}`, {type: sequelize.QueryTypes.SELECT})
     
     if (result) {
         res.send({
-          users:  result[0]
+          users:  result
         })
     } else {
         res.send({
@@ -19,8 +21,16 @@ router.get('/', async function(req, res) {
         })
     }
 
-    console.log(res)
-    
+    console.log(result)
+
+    // const sortType = 'ASC';
+
+    // sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${req.query.keyword}%' ORDER BY name '${sortType}'`, {type: sequelize.QueryTypes.SELECT})
+    //     .then(users => {
+    //         res.json(users);
+    //         console.log(users);
+    //     });
+
 });
 
 router.post('/', function(req, res) {
