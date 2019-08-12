@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 
 router.post('/', async function (req, res) {
     const user = await User.findOne({where: {email: req.body.email, password: req.body.password}});
-    //const user = await sequelize.query(`SELECT FROM users WHERE name = '${req.body.login}', password = '${req.body.password}'`)
+    //const user = await sequelize.query(`SELECT FROM users WHERE email = '${req.body.email}' password = '${req.body.password}'`)
 
     if (!user) {
         console.log("Incorrected login or password!");

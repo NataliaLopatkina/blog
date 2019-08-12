@@ -10,18 +10,18 @@ module.exports = (sequelize, type) => {
         },
 
         text: {
-          type: type.STRING,
+          type: type.STRING(1234),
           allowNull: false,
         },
 
-        authorId: {
-          type: type.INTEGER,
-          references: {
-            model: "User",
-            key: 'id'
-          },
-          allowNull: false,
-        },
+        // authorId: {
+        //   type: type.INTEGER,
+        //   references: {
+        //     model: "User",
+        //     key: 'id'
+        //   },
+        //   allowNull: false,
+        // },
 
         title: {
           type: type.STRING,
