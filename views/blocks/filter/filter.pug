@@ -1,16 +1,16 @@
 mixin filter()
     div(class="filter")&attributes(attributes)
         div(class="filter__item")
-            input(class="filter__input" type="radio" name="name" id="name") 
+            input(class="filter__input filter__input--name" type="radio" name="name" id="name" data-sort="name") 
             label(class="filter__label" for="name") Name
-        div(class="filter__item")    
-            input(class="filter__input" type="radio" name="name" id="date") 
+        div(class="filter__item")
+            input(class="filter__input filter__input--data" type="radio" name="name" id="date" data-sort="data") 
             label(class="filter__label" for="date") Date
         div(class="filter__item")
-            input(class="filter__input" type="radio" name="sort" id="ascending" data-sort="ASD") 
+            input(class="filter__input filter__input--asd" type="radio" name="sort" id="ascending" data-sort="ASD") 
             label(class="filter__label" for="ascending") Ascending
         div(class="filter__item")
-            input(class="filter__input" type="radio" name="sort" id="descending" data-sort="DESC") 
-            label(class="filter__label" for="descending") Descending        
+            input(class="filter__input filter__input--desc" type="radio" name="sort" id="descending" data-sort="DESC") 
+            label(class="filter__label" for="descending") Descending
 
-    // END .filter               
+    // END .filter

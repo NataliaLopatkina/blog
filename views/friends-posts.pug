@@ -8,25 +8,9 @@ block data
 
 block content
     div(class="posts-content")
-        include blocks/search/search.pug
-        +search(obj)(class="posts-content__search")
-
-        include blocks/filter/filter.pug
-        +filter({
-            title: "Filter",
-            firstTypeSort: "Name",
-            secondTypeSort: "Data",
-        })(class="posts-content__filter")
-
-        include blocks/filter/filter.pug
-        +filter({
-            title: "Sort",
-            firstTypeSort: "Ascending",
-            secondTypeSort: "Descending",
-        })(class="posts-content__filter")
 
         div(class="posts-list")
-            include blocks/posts-item/post-item.pug
+            include blocks/posts-item/posts-item.pug
             -
                 var posts = [
                     {
@@ -66,6 +50,6 @@ block content
                 ]
 
             each obj in posts
-                +post(obj)
+                +posts-item(obj)
 
         button(class="button button--more" type="button") Show more

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const varifyToken = require('./middelwares/verify-token');
-const { signUpRouter, signInRouter, homeRouter, userRouter } = require('./routes');
+const { signUpRouter, signInRouter, homeRouter, userRouter, myPostsRouter, friendsPostsRouter, postRouter } = require('./routes');
 
 app.use(cors());
 app.use(bodyParser());
@@ -20,6 +20,9 @@ app.listen(3000);
 app.use('/', signInRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/home', homeRouter);
-app.use('/users', userRouter)
+app.use('/users', userRouter);
+app.use('/my-posts', myPostsRouter);
+app.use('/friends-posts', friendsPostsRouter);
+app.use('/post', postRouter)
 
 module.exports = app;

@@ -5,15 +5,15 @@ mixin nav(activeElement)
                 var navList = [
                     {
                         text: "My posts",
-                        href: "index",
+                        href: "/my-posts",
                     },
                     {
                         text: "Friends posts",
-                        href: "friends-posts",
+                        href: "/friends-posts",
                     },
                     {
                         text: "Add post",
-                        href: "add-post",
+                        href: "/post",
                     },
                 ]
 
@@ -23,5 +23,5 @@ mixin nav(activeElement)
                     - modActive = " nav__item--active"
 
                 li(class="nav__item" + modActive)
-                    a(href=item.href + ".html" class="nav__link") !{item.text}
+                    a(href=item.href class="nav__link") !{item.text}
     // END .nav
