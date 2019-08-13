@@ -11,11 +11,13 @@ block content
     div(class="posts-content")
         div(class="add-post")
             h1(class="add-post__title") Add post
-            form(class="form add-post__form" onsubmit="return false")
+            form(class="form add-post__form" onsubmit="return false" novalidate)
                 div(class="form__item")
                     label(for="title" class="form__label") Title
-                    input(type="text" class="form__input" id="title" placeholder="Title")
+                    input(type="text" class="form__input" id="title" placeholder="Title" required)
+                    span(class="error") Title is required!
                 div(class="form__item")
                     label(for="text-post" class="form__label") Text
-                    textarea(class="form__input add-post__input" id="text-post" placeholder="Enter text")
+                    textarea(class="form__input add-post__input" id="text-post" placeholder="Enter text" required)
+                    span(class="error") Text is required!
                 button(class="button add-post__button") Add post

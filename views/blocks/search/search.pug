@@ -4,7 +4,7 @@ mixin search(obj)
             input(type="text" class="search__input form__input" placeholder="Search")
             button(type="submit" class="button search__button") Search
 
-            include ../filter/filter.pug
-            +filter()(class="search__filter")
+            include ../sort/sort.pug
+            +sort()(class="search__sort")
 
     // END .search

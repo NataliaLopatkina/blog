@@ -8,7 +8,14 @@ class DataService {
             window.location.assign('/')
         })
         .catch(error => {
-            console.log(error)
+            const incorrectedEmail = document.querySelector('.incorrected');
+            incorrectedEmail.classList.add('active');
+
+            const buttonClose = document.querySelector('.incorrected__button');
+
+            buttonClose.addEventListener('click', () => {
+                incorrectedEmail.classList.remove('active');
+            })
         });
     }
 }
@@ -30,36 +37,15 @@ class ErrorMessage {
     constructor() {}
 
     addErrorMessage() {
-        const error = document.querySelector('.error');
-        const errorEmail = document.querySelector('.error--email');
-        const errorPassword = document.querySelector('.error--password')
-        const inputName = document.getElementById('name');
-        const inputEmail = document.getElementById('email');
-        const inputPassword = document.getElementById('password');
+        const fieldEntry = document.querySelectorAll('input');
 
-        if(!inputName.validity.valid) {
-            error.innerText = 'Name are required!';
-            inputName.classList.add('invalid');
-            error.classList.add('active')
-        } else{
-            false;
-        }
-    
-        if(!inputEmail.validity.valid) {
-            errorEmail.innerText = 'Email are required!';
-            inputEmail.classList.add('invalid');
-            errorEmail.classList.add('active')
-        } else{
-            false;
-        }
-    
-        if(!inputPassword.validity.valid) {
-            errorPassword.innerText = 'Password are required!';
-            inputPassword.classList.add('invalid');
-            errorPassword.classList.add('active')
-        } else{
-            false;
-        }
+        fieldEntry.forEach((item)=> {
+            if (!item.validity.valid) {
+                item.classList.add('invalid');
+            } else {
+                item.classList.remove('invalid');
+            }
+        }) 
     }
 }
 

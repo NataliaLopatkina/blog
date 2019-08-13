@@ -20,15 +20,15 @@ router.post('/', function (req, res, next) {
         '${text}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`)
     }
 
-    const result = sequelize.query('SELECT*FROM posts')
+    const { title } = req.query;
 
-    .then(result => {
+    const result = sequelize.query(`SELECT * FROM posts WHERE id = '${title}'`, { type: sequelize.QueryTypes.SELECT })
+
+    if (result) {
         res.send({
-            posts: result[0]
+            posts: result
         })
-    }).catch(err => {
-        return next(err);
-    })
+    }
 });
 
 module.exports = router;

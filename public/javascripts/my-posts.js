@@ -18,10 +18,10 @@ class Posts {
         text.classList.add('posts-item__text');
     }
 
-    getPost() {
-        axios.get('http://localhost:3000/posts', {
+    getPost(title) {
+        axios.get('http://localhost:3000/post', {
             params: {
-                result,
+                title,
             }
         })
 
@@ -37,5 +37,9 @@ class Posts {
 
 let posts = new Posts();
 
-posts.getPost(result);
+const button = document.querySelector('.button--more');
 
+button.addEventListener('click', function() {
+    const id = 'Area Chart Example';
+    posts.getPost(title);
+})

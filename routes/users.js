@@ -8,9 +8,8 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
 });
 
 router.get('/', async function(req, res) {
-    const sortProperty = 'name'
-    const sortType = 'ASC';
-    const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${req.query.keyword}%' ORDER BY ${sortProperty} ${sortType}`, {type: sequelize.QueryTypes.SELECT})
+    const { keyword } = req.query;
+    const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${keyword}%'`, { type: sequelize.QueryTypes.SELECT });
     
     if (result) {
         res.send({

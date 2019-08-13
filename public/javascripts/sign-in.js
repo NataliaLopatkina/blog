@@ -15,7 +15,7 @@ class DataService {
 
             buttonClose.addEventListener('click', () => {
                 incorrectedData.classList.remove('active');
-            })  
+            })
         });
     }
 }

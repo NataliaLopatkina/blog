@@ -1,11 +1,11 @@
 class DataService {
     constructor() { }
 
-    getData(data) {
+    sendData(data) {
         axios.post('http://localhost:3000/post', data)
 
         .then(response => {
-            window.location.assign('/my-posts')
+            //window.location.assign('/my-posts')
             console.log(response)
         })
         .catch(error => {
@@ -24,5 +24,28 @@ buttonAdd.addEventListener('click', ()=> {
 
     const data = {title: title, text: text};
 
-    dataService.getData(data);
+    dataService.sendData(data);
+})
+
+class ErrorMessage {
+    constructor() { }
+
+    addErrorMessage() {
+        const fieldEntry = document.querySelectorAll('.form__input');
+
+        fieldEntry.forEach((item) => {
+            if (!item.validity.valid) {
+                item.classList.add('invalid');
+            } else {
+                item.classList.remove('invalid');
+            }
+        })
+    }
+}
+
+let errorMessage = new ErrorMessage();
+
+const form = document.querySelector('.form');
+form.addEventListener('submit', (event) => {
+    errorMessage.addErrorMessage();
 })

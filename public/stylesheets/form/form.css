@@ -53,6 +53,10 @@
     border: 1px solid red;
 }
 
+.form__input.invalid + .error {
+    display: block;
+}
+
 .form__password {
     position: relative;
 }

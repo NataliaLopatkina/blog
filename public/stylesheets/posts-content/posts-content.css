@@ -1,7 +1,6 @@
 @import "../posts-list/posts-list.css";
 @import "../search/search.css";
 @import "../users/users.css";
-@import "../filter/filter.css";
 @import "../add-post/add-post.css";
 
 .posts-content {

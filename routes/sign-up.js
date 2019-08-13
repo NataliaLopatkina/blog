@@ -1,3 +1,4 @@
+const { User } = require('../sequelize');
 const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
@@ -10,11 +11,14 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
     dialect: 'postgres',
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', async function (req, res, next) {
 
-    const {password, name, email} = req.body;
+    const { id, password, name, email } = req.body;
+    const userEmail = await User.findOne({ where: { email: email } });
 
-    if (password === '' || name === '' ||  email === '') {
+    if(userEmail) {
+        res.sendStatus(403);
+    } else if (password === '' || name === '' || email === '') {
         res.status(422).send('Password, email, name are required!');
     } else {
         sequelize.query(`INSERT INTO users (name, email, password, "createdAt","updatedAt") VALUES('${name}',
