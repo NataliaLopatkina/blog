@@ -1,57 +1,57 @@
 class DataService {
-    constructor() { }
+    constructor() {}
 
     sendData(data) {
         axios.post('http://localhost:3000/sign-up', data)
 
         .then(response => {
             window.location.assign('/')
+            console.log(response)
         })
         .catch(error => {
-            const incorrectedEmail = document.querySelector('.incorrected');
-            incorrectedEmail.classList.add('active');
+            const incorrectedData = document.querySelector('.incorrected');
+            const incrorrectedButton = document.querySelector('.incorrected__button');
 
-            const buttonClose = document.querySelector('.incorrected__button');
+            incorrectedData.classList.add('active');
 
-            buttonClose.addEventListener('click', () => {
-                incorrectedEmail.classList.remove('active');
+            incrorrectedButton.addEventListener('click', ()=> {
+                incorrectedData.classList.remove('active');
             })
+
+            console.log(error)
         });
     }
 }
 
 let dataService = new DataService()
 
-const buttonSend = document.querySelector('.form__button-send');
+const send = document.querySelector('.form__button-send')
 
-buttonSend.addEventListener('click', () => {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const data = { name: name, email: email, password: password};
-
-    dataService.sendData(data);
+send.addEventListener('click', ()=> {
+    
 })
-
-class ErrorMessage {
-    constructor() {}
-
-    addErrorMessage() {
-        const fieldEntry = document.querySelectorAll('input');
-
-        fieldEntry.forEach((item)=> {
-            if (!item.validity.valid) {
-                item.classList.add('invalid');
-            } else {
-                item.classList.remove('invalid');
-            }
-        }) 
-    }
-}
-
-let errorMessage = new ErrorMessage();
 
 const form = document.querySelector('.form__content');
 form.addEventListener('submit', (event)=> {
-    errorMessage.addErrorMessage();
+    event.preventDefault()
+
+    const fieldEntry = document.querySelectorAll('input');
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const data = { name: name.value, email: email.value, password: password.value };
+    
+    fieldEntry.forEach((item)=> {
+        if (item.validity.valid) {
+            item.classList.remove('invalid')
+        }
+
+        else {
+            item.classList.add('invalid');
+        }
+    })
+
+    if (name.validity.valid && email.validity.valid && password.validity.valid) {
+        dataService.sendData(data);
+    }
 })

@@ -74,35 +74,3 @@ class User {
 
 let user = new User();
 
-class Sort {
-    constructor() {}
-
-    sortUser() {
-        const buttonContainer = document.querySelector('.sort');
-        const buttonAsd = document.querySelector('.sort__button--asc');
-        const buttonDesc = document.querySelector('.sort__button--desc');
-
-        buttonContainer.classList.add('is-active');
-
-        const users = document.querySelectorAll('.user__name');
-        const usersArray = Array.from(users);
-
-        users.forEach((item)=> {
-            this.usersName = item.innerHTML;
-
-            //console.log(usersName);
-        })
-
-        console.log(usersArray);
-
-        buttonAsd.addEventListener('click', () => {
-            usersArray.sort();
-        })
-
-        buttonDesc.addEventListener('click', () => {
-            usersArray.sort((a, b) => b - a);
-        })
-    }
-}
-
-let sort = new Sort();

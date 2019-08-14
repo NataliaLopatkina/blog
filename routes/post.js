@@ -19,16 +19,7 @@ router.post('/', function (req, res, next) {
         sequelize.query(`INSERT INTO posts (title, text, "createdAt","updatedAt") VALUES('${title}',
         '${text}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`)
     }
-
-    const { title } = req.query;
-
-    const result = sequelize.query(`SELECT * FROM posts WHERE id = '${title}'`, { type: sequelize.QueryTypes.SELECT })
-
-    if (result) {
-        res.send({
-            posts: result
-        })
-    }
 });
 
 module.exports = router;
+

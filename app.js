@@ -25,4 +25,7 @@ app.use('/my-posts', verifyToken, myPostsRouter);
 app.use('/friends-posts', verifyToken, friendsPostsRouter);
 app.use('/post', verifyToken, postRouter)
 
-module.exports = app;
+module.exports = {
+    app,
+    cookieParser
+};

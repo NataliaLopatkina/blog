@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 router.get('/', function (req, res) {
-    res.render('../views/home', {user: 'Nalatia'});
+    const token = req.cookies.token;
+    const decodedToken = jwt.decode(token);
+    const name = decodedToken.name;
+
+    res.render('../views/home', {user: name});
 });
 
 router.post('/', function(req, res) {
