@@ -2,14 +2,14 @@ class DataService {
     constructor() { }
 
     sendData(data) {
-        axios.post('http://localhost:3000/post', data)
+        axios.post('http://localhost:3000/add-post', data)
 
         .then(response => {
-            //window.location.assign('/my-posts')
-            console.log(response)
+            window.location.assign('/home');
+            console.log('ok')
         })
         .catch(error => {
-            console.log(error)
+            console.log('error')
         });
     }
 }

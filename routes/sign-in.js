@@ -17,12 +17,15 @@ router.post('/', async function (req, res) {
     const result = await sequelize.query(`SELECT * FROM users WHERE 
     (email = '${email}') AND (password = '${password}')`)
 
-    if (!result[0][0]) {
+    const user = result[0][0];
+
+    if (!user) {
         res.sendStatus(402);
-        console.log('Пользователь на зарегестрирован')
+        console.log('Пользователь не зарегистрирован')
     } else {
-        const user = result[0][0];
-        const token = jwt.sign({ id: user.id, name: user.name, email: user.email, password: user.password }, 'secret', { expiresIn: '1h' });
+        
+        const token = jwt.sign({ id: user.id, name: user.name, email: user.email, password: user.password }, 
+            'secret', { expiresIn: '1h' });
 
         res.cookie('token', token, { maxAge: 900000, httpOnly: true });
         res.sendStatus(200);

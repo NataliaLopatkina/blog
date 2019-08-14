@@ -26,8 +26,6 @@ class DataService {
                     user.createUser(name);
                 });
 
-                sort.sortUser();
-
                 errorMessage.classList.remove('active');
             }
         })
