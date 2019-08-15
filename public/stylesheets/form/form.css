@@ -31,7 +31,10 @@
     font-weight: 500;
     color: var(--main-color);
     width: calc(100% - 12px);
-    padding: 10px 5px;
+    height: 45px;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow-y: hidden;
     outline: none;
     border: 1px solid var(--main-color);
     border-radius: 5px;
@@ -81,8 +84,8 @@
     font-size: 35px;
     color: var(--main-color);
     position: absolute;
-    top: 2px;
-    right: 3px;
+    top: -3px;
+    right: 4px;
 }
 
 .form__password-img {

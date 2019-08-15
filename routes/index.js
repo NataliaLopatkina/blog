@@ -4,7 +4,9 @@ const homeRouter = require('./home');
 const userRouter = require('./users');
 const addPostRouter = require('./add-post');
 const myPostsRouter = require('./my-posts');
-// const friendsPostsRouter = require('./friends-posts');
+const followingRouter = require('./following')
+const postsRouter = require('./posts');
+const friendsPostsRouter = require('./friends-posts');
 // const postRouter = require('./post');
 
 module.exports = {
@@ -14,6 +16,8 @@ module.exports = {
     userRouter,
     addPostRouter,
     myPostsRouter,
-    // friendsPostsRouter,
+    followingRouter,
+    postsRouter,
+    friendsPostsRouter,
     // postRouter
 }

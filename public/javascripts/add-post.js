@@ -5,7 +5,7 @@ class DataService {
         axios.post('http://localhost:3000/add-post', data)
 
         .then(response => {
-            window.location.assign('/home');
+            window.location.assign('/my-posts');
             console.log('ok')
         })
         .catch(error => {

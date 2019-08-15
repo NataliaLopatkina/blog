@@ -20,8 +20,8 @@ router.post('/', function (req, res, next) {
     if (title === '' || text === '' ) {
         res.status(422).send('Title, text are required!');
     } else {
-        sequelize.query(`INSERT INTO posts (title, text, author_id, "createdAt","updatedAt") VALUES('${title}',
-        '${text}', '${id}', '${new Date().toISOString()}', '${new Date().toISOString()}')`, { type: sequelize.QueryTypes.SELECT })
+        sequelize.query(`INSERT INTO posts (title, text, date, author_id, "createdAt","updatedAt") VALUES('${title}',
+        '${text}', '${new Date().toISOString()}', '${id}', '${new Date().toISOString()}', '${new Date().toISOString()}')`, { type: sequelize.QueryTypes.SELECT })
     }
 
     

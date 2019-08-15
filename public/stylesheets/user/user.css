@@ -1,5 +1,3 @@
-@import "../user-like/user-like.css";
-
 .user {
     box-shadow: 0 0 10px var(--main-color);
     border-radius: 5px;
@@ -21,6 +19,11 @@
     cursor: pointer;
     border: none;
     outline: none;
+    padding: 0;
+}
+
+.user__following.friend {
+    background: url('../../images/svg-icon/like-active.svg');
 }
 
 .user__date-registration {

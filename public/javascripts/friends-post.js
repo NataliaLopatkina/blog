@@ -1,30 +1,30 @@
 class Posts {
     constructor() { }
 
-    getPost(id) {
+    getPost(idFriend) {
         axios.get('http://localhost:3000/posts', {
             params: {
-                id,
+                idFriend,
             }
         })
 
-        .then(response => {
+            .then(response => {
 
-            const { posts } = response.data;
-            const arrayPosts = posts[0];
+                const { posts } = response.data;
+                const arrayPosts = posts[0];
 
-            arrayPosts.forEach(function(item) {
-                const postTitle = item.title;
-                const postText = item.text;
-                const postDate = item.date;
+                arrayPosts.forEach(function (item) {
+                    const postTitle = item.title;
+                    const postText = item.text;
+                    const postDate = item.date;
 
-                createPost(postTitle, postText, postDate);
+                    createPost(postTitle, postText, postDate);
+                })
             })
-        })
 
-        .catch(error => {
-            console.log(error)
-        })
+            .catch(error => {
+                console.log(error)
+            })
     }
 }
 

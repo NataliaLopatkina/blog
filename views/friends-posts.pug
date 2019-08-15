@@ -4,52 +4,12 @@ block data
     -
         var data = {
             activeElement: "Friends posts",
+            script: 'friends-post',
         }
 
 block content
     div(class="posts-content")
 
         div(class="posts-list")
-            include blocks/posts-item/posts-item.pug
-            -
-                var posts = [
-                    {
-                        title: "Lorem ipsum dolor sit amet",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero quibusdam quia quaerat est accusamus ab aut qui. Ex blanditiis nostrum dolores aut molestias obcaecati et, iure quaerat distinctio perferendis.",
-                        user: "Lorem lorem",
-                        time: "10-10-2017",
-                    },
-
-                    {
-                        title: "Lorem ipsum dolor sit amet",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero quibusdam quia quaerat est accusamus ab aut qui. Ex blanditiis nostrum dolores aut molestias obcaecati et, iure quaerat distinctio perferendis.",
-                        user: "Lorem lorem",
-                        time: "11-10-2017",
-                    },
-
-                    {
-                        title: "Lorem ipsum dolor sit amet",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero quibusdam quia quaerat est accusamus ab aut qui. Ex blanditiis nostrum dolores aut molestias obcaecati et, iure quaerat distinctio perferendis.",
-                        user: "Lorem lorem",
-                        time: "12-10-2017",
-                    },
-
-                    {
-                        title: "Lorem ipsum dolor sit amet",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero quibusdam quia quaerat est accusamus ab aut qui. Ex blanditiis nostrum dolores aut molestias obcaecati et, iure quaerat distinctio perferendis.",
-                        user: "Lorem lorem",
-                        time: "13-10-2017",
-                    },
-
-                    {
-                        title: "Lorem ipsum dolor sit amet",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius libero quibusdam quia quaerat est accusamus ab aut qui. Ex blanditiis nostrum dolores aut molestias obcaecati et, iure quaerat distinctio perferendis.",
-                        user: "Lorem lorem",
-                        time: "14-10-2017",
-                    }
-                ]
-
-            each obj in posts
-                +posts-item(obj)
 
         button(class="button button--more" type="button") Show more

@@ -2,14 +2,20 @@ var express = require('express');
 var router  = express.Router();
 const Sequelize = require('sequelize');
 const { User } = require('../sequelize');
+const jwt = require('jsonwebtoken');
 
 const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
     dialect: 'postgres',
 });
 
 router.get('/', async function(req, res) {
+    const token = req.cookies.token;
+    const decodedToken = jwt.decode(token);
+    const id = decodedToken.id;
+
     const { keyword } = req.query;
-    const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${keyword}%'`, { type: sequelize.QueryTypes.SELECT });
+    const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${keyword}%' AND (id != '${id}')`, 
+    { type: sequelize.QueryTypes.SELECT });
     
     if (result) {
         res.send({

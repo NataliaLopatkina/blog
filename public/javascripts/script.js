@@ -14,17 +14,7 @@ if (document.querySelectorAll('.button-menu').length > 0) {
         }
     })
 }
-    
-// Button like
-if (document.querySelectorAll('.user-like').length > 0) {
-    let buttonsLike = document.querySelectorAll('.user-like');
 
-    buttonsLike.forEach(function(item) {
-        item.addEventListener('click', function () {
-            item.classList.toggle('friend');
-        })
-    })
-}
 
 // Show password
 if (document.querySelectorAll('.form__password-button').length > 0) {
