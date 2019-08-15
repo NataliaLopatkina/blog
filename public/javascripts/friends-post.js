@@ -1,17 +1,17 @@
 class Posts {
     constructor() { }
 
-    getPost(idFriend) {
+    getPost(id) {
         axios.get('http://localhost:3000/posts', {
             params: {
-                idFriend,
+                id,
             }
         })
 
             .then(response => {
 
-                const { posts } = response.data;
-                const arrayPosts = posts[0];
+                const { friendsPosts } = response.data;
+                const arrayPosts = friendsPosts[0];
 
                 arrayPosts.forEach(function (item) {
                     const postTitle = item.title;
@@ -32,7 +32,7 @@ let posts = new Posts();
 
 const buttonMore = document.querySelector('.button--more');
 
-posts.getPost(92);
+posts.getPost(55);
 
 
 function createPost(titlePost, textPost, datePost) {

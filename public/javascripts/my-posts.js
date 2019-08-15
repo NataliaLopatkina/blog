@@ -5,13 +5,14 @@ class Posts {
         axios.get('http://localhost:3000/posts', {
             params: {
                 id,
+                type: 'myPost',
             }
         })
 
         .then(response => {
 
             const { posts } = response.data;
-            const arrayPosts = posts[0];
+            const [arrayPosts] = posts;
 
             arrayPosts.forEach(function(item) {
                 const postTitle = item.title;
@@ -32,7 +33,7 @@ let posts = new Posts();
 
 const buttonMore = document.querySelector('.button--more');
 
-posts.getPost(92);
+posts.getPost(55);
 
 
 function createPost(titlePost, textPost, datePost) {
@@ -58,3 +59,25 @@ function createPost(titlePost, textPost, datePost) {
     date.innerText = datePost;
     date.classList.add('.posts-item__text')
 }
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+  }
+
+  getCookie('token')
+
+  function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
+var token = getCookie('token');
+
+parseJwt(token)

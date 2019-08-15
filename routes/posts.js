@@ -9,36 +9,31 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
 });
 
 router.get('/', async function (req, res) {
-    //const { id } = req.query;
-    const { idFriend } = req.query;
+    const { id } = req.query;
 
-    // if (req.query.id) {
-        
-    //     const result = await sequelize.query(`SELECT * FROM posts WHERE author_id = ${id}`)
+    if (req.query.type === 'myPost') {
+        const result = await sequelize.query(`SELECT * FROM posts WHERE author_id = ${id}`)
 
-    //     if (result) {
-    //         res.send({
-    //             posts: result
-    //         })
-    //     }
-
-    //     else {
-    //         console.log('Посты не найдены')
-    //     }
-    // }
-
-    // else if (req.query.idFriend) {
-        const friendsPosts = await sequelize.query(`SELECT * FROM posts WHERE author_id != ${idFriend}`)
-
-        if (friendsPosts) {
+        if (result) {
             res.send({
-                postsFriend: friendsPosts
+                posts: result
             })
         }
 
         else {
             console.log('Посты не найдены')
         }
+
+    } else {
+        const result = await sequelize.query(`SELECT * FROM posts right join users on posts.author_id = users.id where users.id in 
+        (SELECT following from followers where follower = '${id}') and posts.author_id is not null`)
+
+        if (result) {
+            res.send({
+                friendsPosts: result
+            })
+        }
+    }
 });
 
 router.post('/', async function (req, res) {

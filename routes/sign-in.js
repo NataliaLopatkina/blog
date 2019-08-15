@@ -27,7 +27,7 @@ router.post('/', async function (req, res) {
         const token = jwt.sign({ id: user.id, name: user.name, email: user.email, password: user.password }, 
             'secret', { expiresIn: '1h' });
 
-        res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+        res.cookie('token', token, { maxAge: 900000, httpOnly: false });
         res.sendStatus(200);
         console.log('Пользователь найден')
     }

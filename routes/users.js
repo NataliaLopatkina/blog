@@ -9,9 +9,9 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
 });
 
 router.get('/', async function(req, res) {
-    const token = req.cookies.token;
+    const {token} = req.cookies;
     const decodedToken = jwt.decode(token);
-    const id = decodedToken.id;
+    const {id} = decodedToken;
 
     const { keyword } = req.query;
     const result = await sequelize.query(`SELECT * FROM users WHERE name ILIKE '%${keyword}%' AND (id != '${id}')`, 
