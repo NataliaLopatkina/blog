@@ -9,8 +9,6 @@ router.get('/', function (req, res) {
     res.render('../views/my-posts', {user: name});
 });
 
-router.post('/', async function (req, res) {
-    
-});
+router.post('/', async function (req, res) {});
 
 module.exports = router;

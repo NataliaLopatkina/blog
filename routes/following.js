@@ -25,8 +25,8 @@ router.post('/', async function (req, res) {
     if (followingUser[0][0]) {
         await sequelize.query(`DELETE FROM followers WHERE (follower = '${myID}' 
         AND following = '${following}')`)
+
         res.send({ message: 'You are removed from the subscribers of this user', status: 204})
-        console.log('Вы удалены из followers данного пользователя')
     }
 
     else {
@@ -39,8 +39,6 @@ router.post('/', async function (req, res) {
         .catch((err) => {
             console.log(err)
         })
-
-        console.log('Вы добавлены в список followers данного пользователя')
     }
 });
 

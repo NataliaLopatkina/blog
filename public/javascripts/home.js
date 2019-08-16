@@ -29,14 +29,11 @@ class DataService {
             } else {
                 users.forEach(item => {
                     const name = item.name;
-
-                    console.log(name)
                     const id = item.id;
                     user.createUser(name, id);
                 })
 
                 errorMessage.classList.remove('active');
-
                 const buttonFriend = document.querySelectorAll('.user__following');
 
                 buttonFriend.forEach((item) => {
@@ -181,3 +178,18 @@ class Notification {
 }
 
 let notification = new Notification();
+
+if (document.querySelectorAll('.button-menu').length > 0) {
+    let buttonMenu = document.querySelector('.button-menu');
+    let navList = document.querySelector('.nav');
+
+    buttonMenu.addEventListener('click', function () {
+        if (navList.classList.contains('nav--opened')) {
+            navList.classList.remove('nav--opened');
+            buttonMenu.classList.remove('button-menu--closed');
+        } else {
+            navList.classList.add('nav--opened');
+            buttonMenu.classList.add('button-menu--closed');
+        }
+    })
+}

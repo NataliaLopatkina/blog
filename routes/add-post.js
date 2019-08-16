@@ -8,23 +8,28 @@ const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
 });
 
 router.get('/', function (req, res) {
-    res.render('../views/add-post');
+    const token = req.cookies.token;
+    const decodedToken = jwt.decode(token);
+    const name = decodedToken.name;
+
+    res.render('../views/add-post', { user: name });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
     const { title, text } = req.body;
     const token = req.cookies.token;
     const decodedToken = jwt.decode(token);
     const id = decodedToken.id;
 
     if (title === '' || text === '' ) {
-        res.status(422).send('Title, text are required!');
+        res.send({ message: 'Title, text are required!', status: 422});
+
     } else {
         sequelize.query(`INSERT INTO posts (title, text, date, author_id) VALUES('${title}',
         '${text}', '${new Date().toISOString()}', ${id})`, { type: sequelize.QueryTypes.SELECT })
-    }
 
-    
+        res.send({ message: 'Post added!', status: 201 });
+    }
 });
 
 module.exports = router;

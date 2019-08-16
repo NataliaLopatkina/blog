@@ -21,23 +21,26 @@ router.get('/', async function (req, res) {
         }
 
         else {
-            console.log('Посты не найдены')
+            res.send({message: 'Posts not found!', status: 404})
         }
 
     } else {
-        const result = await sequelize.query(`SELECT * FROM posts right join users on posts.author_id = users.id where users.id in 
-        (SELECT following from followers where follower = '${id}') and posts.author_id is not null`)
+        const result = await sequelize.query(`SELECT * FROM posts right join users on posts.author_id = users.id 
+        where users.id in (SELECT following from followers where follower = '${id}') 
+        and posts.author_id is not null`)
 
         if (result) {
             res.send({
                 friendsPosts: result
             })
         }
+
+        else {
+            res.send({ message: 'Posts not found!', status: 404 })
+        }
     }
 });
 
-router.post('/', async function (req, res) {
-    
-});
+router.post('/', async function (req, res) {});
 
 module.exports = router;

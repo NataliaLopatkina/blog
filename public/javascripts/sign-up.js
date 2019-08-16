@@ -81,3 +81,20 @@ buttonSignIn.addEventListener('click', () => {
     window.location.assign('/');
     }
 )
+
+if (document.querySelectorAll('.form__password-button').length > 0) {
+    let buttonShowPassword = document.querySelector('.form__password-button');
+    let inputPassword = document.getElementById('password');
+
+    buttonShowPassword.addEventListener('click', function () {
+        buttonShowPassword.classList.toggle('not-show');
+
+        let typeUnput = inputPassword.getAttribute('type');
+
+        if (typeUnput == 'password') {
+            inputPassword.setAttribute('type', 'text');
+        } else {
+            inputPassword.setAttribute('type', 'password');
+        }
+    })
+}

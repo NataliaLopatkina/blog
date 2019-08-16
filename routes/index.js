@@ -7,7 +7,6 @@ const myPostsRouter = require('./my-posts');
 const followingRouter = require('./following')
 const postsRouter = require('./posts');
 const friendsPostsRouter = require('./friends-posts');
-// const postRouter = require('./post');
 
 module.exports = {
     signUpRouter,
@@ -19,5 +18,4 @@ module.exports = {
     followingRouter,
     postsRouter,
     friendsPostsRouter,
-    // postRouter
 }

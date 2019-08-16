@@ -16,8 +16,6 @@ router.get('/', function (req, res) {
     res.render('../views/home', {user: name});
 });
 
-router.post('/', function(req, res) {
-    
-})
+router.post('/', function(req, res) {})
 
 module.exports = router;

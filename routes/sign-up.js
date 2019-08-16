@@ -15,20 +15,17 @@ router.post('/', async function (req, res, next) {
     const result = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`, { type: sequelize.QueryTypes.SELECT })
 
     if (!result[0]) {
-        console.log('Создание нового пользователя')
-        
         sequelize.query(`INSERT INTO users (name, email, password) VALUES('${name}', 
             '${email}', '${password}' )`, { type: sequelize.QueryTypes.INSERT })
         .then((result) => {
-            res.sendStatus(201)
+            res.send({ message: 'User is registered', status: 201})
         })
         .catch((err) => {
             console.log(err)
         })
 
     } else {
-        console.log('Такой пользователь уже есть')
-        res.sendStatus(403)
+        res.send({ message: 'User with this name is already registered', status: 403 })
     }
 });
 

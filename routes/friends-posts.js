@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 router.get('/', function (req, res) {
-    res.render('../views/friends-posts');
+    const token = req.cookies.token;
+    const decodedToken = jwt.decode(token);
+    const name = decodedToken.name;
+    res.render('../views/friends-posts', { user: name });
 });
 
-router.post('/', function (req, res) {
-    res.redirect('/')
-})
+router.post('/', function (req, res) {})
 
 module.exports = router;

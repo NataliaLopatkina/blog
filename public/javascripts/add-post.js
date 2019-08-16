@@ -6,10 +6,10 @@ class DataService {
 
         .then(response => {
             window.location.assign('/my-posts');
-            console.log('ok')
+            console.log('dedwe')
         })
         .catch(error => {
-            console.log('error')
+            console.log(error)
         });
     }
 }
@@ -49,3 +49,18 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', (event) => {
     errorMessage.addErrorMessage();
 })
+
+if (document.querySelectorAll('.button-menu').length > 0) {
+    let buttonMenu = document.querySelector('.button-menu');
+    let navList = document.querySelector('.nav');
+
+    buttonMenu.addEventListener('click', function () {
+        if (navList.classList.contains('nav--opened')) {
+            navList.classList.remove('nav--opened');
+            buttonMenu.classList.remove('button-menu--closed');
+        } else {
+            navList.classList.add('nav--opened');
+            buttonMenu.classList.add('button-menu--closed');
+        }
+    })
+}
