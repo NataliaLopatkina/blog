@@ -21,12 +21,16 @@ class DataService {
             const { users } = response.data;
             const errorMessage = document.querySelector('.error');
 
+            console.log(user)
+
             if (users.length === 0) {
                 errorMessage.classList.add('active');
 
             } else {
                 users.forEach(item => {
                     const name = item.name;
+
+                    console.log(name)
                     const id = item.id;
                     user.createUser(name, id);
                 })
@@ -43,10 +47,38 @@ class DataService {
 
                         .then((res) => {
                             const status = res.data.status;
-                            if (status === 204) {
-                                alert('Вы удалены из списка followers данного пользователя')
-                            } else if (status === 201) {
-                                alert('Вы добавлены в список followers данного пользователя')
+                            if (status === 201) {
+                                if (document.querySelectorAll('.notification').length > 0) {
+                                    const notificationBlock = document.querySelectorAll('.notification');
+                                    notificationBlock.remove();
+
+                                    const text = 'You are added to the list followers of this user';
+                                    const type = 'not-error';
+                                    notification.createNotification(text, type);
+                                    notification.deleteNotification();
+                                    
+                                } else {
+                                    const text = 'You are added to the list followers of this user';
+                                    const type = 'not-error';
+                                    notification.createNotification(text, type);
+                                    notification.deleteNotification();
+                                }
+
+                            } else if (status === 204) {
+                                if (document.querySelectorAll('.notification').length > 0) {
+                                    const notificationBlock = document.querySelector('.notification');
+                                    notificationBlock.remove();
+
+                                    const text = 'You are removed to the list followers of this user';
+                                    const type = 'not-error';
+                                    notification.createNotification(text, type);
+                                    notification.deleteNotification();
+                                } else {
+                                    const text = 'You are removed to the list followers of this user';
+                                    const type = 'not-error';
+                                    notification.createNotification(text, type);
+                                    notification.deleteNotification();
+                                }
                             }
                         })
 
@@ -112,3 +144,40 @@ class User {
 }
 
 let user = new User();
+
+
+class Notification {
+    createNotification(text, type) {
+        const searchContent = document.querySelector('.search-content');
+        const usersList = document.querySelector('.users');
+
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        searchContent.insertBefore(notification, usersList);
+
+        const notificationText = document.createElement('span');
+        notificationText.classList.add('notification__text');
+        notificationText.innerText = text;
+        notification.appendChild(notificationText);
+
+        const notificationButton = document.createElement('button');
+        notificationButton.classList.add('notification__button');
+        notificationButton.innerText = 'X';
+        notification.appendChild(notificationButton);
+
+        if (type === 'not-error') {
+            notification.classList.add('notification--not-error')
+        }
+    }
+
+    deleteNotification() {
+        const buttonDelete = document.querySelector('.notification__button');
+        const notification = document.querySelector('.notification');
+
+        buttonDelete.addEventListener('click', () => {
+            notification.remove();
+        })
+    }
+}
+
+let notification = new Notification();

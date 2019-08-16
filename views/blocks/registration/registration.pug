@@ -1,11 +1,11 @@
-mixin registration()
+mixin registration(obj)
     div(class="registration")
-        p(class="registration__text") Create your own profile
+        p(class="registration__text") !{obj.text}
 
         include ../button/button.pug
         +button({
             type: "button",
-            text: "Sign-up",
+            text: obj.buttonText,
         })(class="registration__button")
 
     // END .registration

@@ -30,9 +30,8 @@ router.post('/', async function (req, res) {
     }
 
     else {
-        await sequelize.query(`INSERT INTO followers (follower, following, "createdAt", "updatedAt") VALUES('${myID}', 
-        '${following}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`,
-            { type: sequelize.QueryTypes.INSERT })
+        await sequelize.query(`INSERT INTO followers (follower, following) VALUES('${myID}', '${following}')`,
+        { type: sequelize.QueryTypes.INSERT })
 
         .then((result) => {
             res.send({ message: 'You are added to the followers list of this user.', status: 201})

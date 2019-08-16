@@ -31,11 +31,6 @@ class Posts {
 
 let posts = new Posts();
 
-const buttonMore = document.querySelector('.button--more');
-
-posts.getPost(55);
-
-
 function createPost(titlePost, textPost, datePost) {
     const posts = document.querySelector('.posts-list');
     const post = document.createElement('div');
@@ -80,4 +75,7 @@ function getCookie(name) {
 
 var token = getCookie('token');
 
-parseJwt(token)
+var decodedToken = parseJwt(token);
+var id = decodedToken.id;
+
+posts.getPost(id);

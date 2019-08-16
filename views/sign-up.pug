@@ -11,8 +11,14 @@ block content
         include blocks/form/form.pug
         +form({
             title: "Sign-up",
-            labelUser: "Name",
             signUp: true,
+            labelUser: "Name",
             labelEmail: "Email",
             labelPassword: "Password",
+        })
+
+        include blocks/registration/registration.pug
+        +registration({
+            text: 'If you already have a profile, log in',
+            buttonText: 'Sign-in',
         })

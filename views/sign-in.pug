@@ -10,11 +10,13 @@ block content
     div(class="authentication authentication--position")
         include blocks/form/form.pug
         +form({
-            signIn: true,
             title: "Sign-in",
             labelEmail: "Login or email",
             labelPassword: "Password",
         })
 
         include blocks/registration/registration.pug
-        +registration()
+        +registration({
+            text: 'Create your own profile',
+            buttonText: 'Sign-up',
+        })

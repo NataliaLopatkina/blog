@@ -17,9 +17,8 @@ router.post('/', async function (req, res, next) {
     if (!result[0]) {
         console.log('Создание нового пользователя')
         
-        sequelize.query(`INSERT INTO users (name, email, password, "createdAt","updatedAt") VALUES('${name}', 
-            '${email}', '${password}', '${new Date().toISOString()}', '${new Date().toISOString()}' )`, 
-            { type: sequelize.QueryTypes.INSERT })
+        sequelize.query(`INSERT INTO users (name, email, password) VALUES('${name}', 
+            '${email}', '${password}' )`, { type: sequelize.QueryTypes.INSERT })
         .then((result) => {
             res.sendStatus(201)
         })

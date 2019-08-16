@@ -9,27 +9,14 @@ class DataService {
             console.log(response)
         })
         .catch(error => {
-            const incorrectedData = document.querySelector('.incorrected');
-            const incrorrectedButton = document.querySelector('.incorrected__button');
-
-            incorrectedData.classList.add('active');
-
-            incrorrectedButton.addEventListener('click', ()=> {
-                incorrectedData.classList.remove('active');
-            })
-
-            console.log(error)
+            const text = 'User with the same name already exists!'
+            notification.createNotification(text);
+            notification.deleteNotification();
         });
     }
 }
 
 let dataService = new DataService()
-
-const send = document.querySelector('.form__button-send')
-
-send.addEventListener('click', ()=> {
-    
-})
 
 const form = document.querySelector('.form__content');
 form.addEventListener('submit', (event)=> {
@@ -55,3 +42,42 @@ form.addEventListener('submit', (event)=> {
         dataService.sendData(data);
     }
 })
+
+class Notification {
+    createNotification(text) {
+        const authenticationForm = document.querySelector('.form');
+        const authenticationFormContent = document.querySelector('.form__content');
+
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        authenticationForm.insertBefore(notification, authenticationFormContent);
+
+        const notificationText = document.createElement('span');
+        notificationText.classList.add('notification__text');
+        notificationText.innerText = text;
+        notification.appendChild(notificationText);
+
+        const notificationButton = document.createElement('button');
+        notificationButton.classList.add('notification__button');
+        notificationButton.innerText = 'X';
+        notification.appendChild(notificationButton);
+    }
+
+    deleteNotification() {
+        const buttonDelete = document.querySelector('.notification__button');
+        const notification = document.querySelector('.notification');
+
+        buttonDelete.addEventListener('click', () => {
+            notification.remove();
+        })
+    }
+}
+
+let notification = new Notification();
+
+const buttonSignIn = document.querySelector('.registration__button');
+
+buttonSignIn.addEventListener('click', () => {
+    window.location.assign('/');
+    }
+)
