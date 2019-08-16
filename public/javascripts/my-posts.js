@@ -31,9 +31,13 @@ class Posts {
 
 let posts = new Posts();
 
-const buttonMore = document.querySelector('.button--more');
+var token = getCookie('token');
 
-posts.getPost(55);
+var decodeToken = parseJwt(token)
+
+const id = decodeToken.id;
+
+posts.getPost(id);
 
 
 function createPost(titlePost, textPost, datePost) {
@@ -78,6 +82,4 @@ function getCookie(name) {
     return JSON.parse(jsonPayload);
 };
 
-var token = getCookie('token');
 
-parseJwt(token)
