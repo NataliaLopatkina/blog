@@ -1,12 +1,11 @@
-class DataService {
+class AddPost {
     constructor() { }
 
     sendData(data) {
-        axios.post('http://localhost:3000/add-post', data)
+        axios.post('/add-post', data)
 
         .then(response => {
             window.location.assign('/my-posts');
-            console.log('dedwe')
         })
         .catch(error => {
             console.log(error)
@@ -14,17 +13,27 @@ class DataService {
     }
 }
 
-let dataService = new DataService()
+let addPost = new AddPost()
 
 const buttonAdd = document.querySelector('.add-post__button');
 
 buttonAdd.addEventListener('click', ()=> {
-    const title = document.getElementById('title').value;
-    const text = document.getElementById('text-post').value;
+    const inputs = document.querySelectorAll('input');
 
-    const data = {title: title, text: text};
+    this.userData = {}
 
-    dataService.sendData(data);
+    inputs.forEach((item) => {
+        const id = item.getAttribute('id');
+
+        if (id === 'title') {
+            this.userData.title = item.value;
+
+        } else if (id === 'text') {
+            this.userData.text = item.value;
+        }
+    })
+
+    addPost.sendData(userData);
 })
 
 class ErrorMessage {

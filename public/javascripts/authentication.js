@@ -5,13 +5,13 @@ class Authentication {
         inputs.forEach((item) => {
             const id = item.getAttribute('id');
 
-            if (id === name) {
+            if (id === 'name') {
                 this.userData.name = item.value;
 
-            } else if (id === email) {
+            } else if (id === 'email') {
                 this.userData.email = item.value;
 
-            } else if (id === password) {
+            } else if (id === 'password') {
                 this.userData.password = item.value;
             }
         })

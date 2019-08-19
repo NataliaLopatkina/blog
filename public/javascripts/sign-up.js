@@ -11,6 +11,8 @@ class SignUp extends Authentication {
             this.userData = {}
             this.getUserData();
 
+            console.log(this.userData);
+
             if (email.validity.valid && password.validity.valid) {
 
                 axios.post('/', this.userData)
@@ -20,7 +22,7 @@ class SignUp extends Authentication {
                     })
 
                     .catch(error => {
-                        const text = 'User with the same name already exists!'
+                        const text = 'User with the same name already exists!';
                         this.createNotification(text);
                         this.deleteNotification();
                     })
