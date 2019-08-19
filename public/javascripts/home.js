@@ -91,9 +91,9 @@ class DataService {
                         })
                     })
                 })
-            }
 
-            user.addFriend();
+                user.addFriend();
+            }
         })
 
         .catch(error => console.log(error));
@@ -148,7 +148,6 @@ class User {
 }
 
 let user = new User();
-
 
 class Notification {
     createNotification(text, type) {
