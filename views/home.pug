@@ -13,8 +13,9 @@ block content
         include blocks/search/search.pug
         +search(obj)(class="search-content__form")
 
-        button(class="button button--asd") По возрастанию
-        button(class="button button--desc") По убыванию
+        div(class="search-content__buttons-sort")
+            button(class="button button--asd search-content__button-sort") По возрастанию
+            button(class="button button--desc sort-buttons__button-sort") По убыванию
 
         div(class="users")
 

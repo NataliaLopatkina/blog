@@ -26,6 +26,10 @@ mixin nav(activeElement)
                 if activeElement == item.text
                     - modActive = " nav__item--active"
 
-                li(class="nav__item" + modActive)
+                - var homePage = ""
+                if activeElement == ""
+                    - homePage = " nav__item--page-home"
+
+                li(class="nav__item" + modActive + homePage)
                     a(href=item.href class="nav__link") !{item.text}
     // END .nav

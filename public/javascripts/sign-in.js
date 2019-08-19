@@ -84,8 +84,11 @@ let notification = new Notification();
 if (document.querySelectorAll('.form__password-button').length > 0) {
     let buttonShowPassword = document.querySelector('.form__password-button');
     let inputPassword = document.getElementById('password');
+    
 
     buttonShowPassword.addEventListener('click', function () {
+        event.preventDefault();
+        event.stopPropagation();
         buttonShowPassword.classList.toggle('not-show');
 
         let typeUnput = inputPassword.getAttribute('type');

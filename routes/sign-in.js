@@ -20,14 +20,14 @@ router.post('/', async function (req, res) {
     const user = result[0][0];
 
     if (!user) {
-        res.send({message: 'User is not registered', status: 402})
+        res.status(402).send('User is not registered');
     } else {
         
         const token = jwt.sign({ id: user.id, name: user.name, email: user.email, password: user.password }, 
             'secret', { expiresIn: '1h' });
 
         res.cookie('token', token, { maxAge: 900000, httpOnly: false });
-        res.send({ message: 'User found!', status: 200 })
+        res.status(200).send('User found!');
     }
 });
 

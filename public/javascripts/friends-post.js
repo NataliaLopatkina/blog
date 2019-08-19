@@ -24,7 +24,28 @@ class Posts {
                     createPost(postTitle, postText, postDate, postAuthor);
                 })
 
-                if (document.querySelectorAll('.posts-item__text').length > 0) {
+                const buttonSort = document.querySelector('.button--asd');
+
+                buttonSort.addEventListener('click', function () {
+                    arrayPosts.sort((prev, next) => {
+                        if (prev.date < next.date) return -1;
+                        if (prev.date > next.date) return 1
+                    })
+
+                    const postsActive = document.querySelectorAll('.posts-item');
+
+                    postsActive.forEach((item) => {
+                        item.remove();
+                    })
+
+                    arrayPosts.forEach(item => {
+                        const postTitle = item.title;
+                        const postText = item.text;
+                        const postDate = item.date;
+                        const postAuthor = item.name;
+                        createPost(postTitle, postText, postDate, postAuthor);
+                    })
+
                     let maxLengthText = 210;
                     let textPost = document.querySelectorAll('.posts-item__text');
 
@@ -34,7 +55,51 @@ class Posts {
                             item.innerText = visisblePathText;
                         }
                     })
-                }
+                })
+
+                const buttonSortDesc = document.querySelector('.button--desc');
+
+                buttonSortDesc.addEventListener('click', function () {
+                    arrayPosts.sort((prev, next) => {
+                        if (prev.date < next.date) return -1;
+                        if (prev.date > next.date) return 1
+                    })
+
+                    const postsActive = document.querySelectorAll('.posts-item');
+
+                    postsActive.forEach((item) => {
+                        item.remove();
+                    })
+
+                    arrayPosts.reverse().forEach(item => {
+                        const postTitle = item.title;
+                        const postText = item.text;
+                        const postDate = item.date;
+                        const postAuthor = item.name;
+                        createPost(postTitle, postText, postDate, postAuthor);
+                    })
+
+                    let maxLengthText = 210;
+                    let textPost = document.querySelectorAll('.posts-item__text');
+
+                    textPost.forEach(function (item) {
+                        if (item.textContent.length > maxLengthText) {
+                            var visisblePathText = item.textContent.slice(0, maxLengthText) + ' ...';
+                            item.innerText = visisblePathText;
+                        }
+                    })
+                })
+
+                let maxLengthText = 210;
+                let textPost = document.querySelectorAll('.posts-item__text');
+
+                textPost.forEach(function (item) {
+                    if (item.textContent.length > maxLengthText) {
+                        var visisblePathText = item.textContent.slice(0, maxLengthText) + ' ...';
+                        item.innerText = visisblePathText;
+                    }
+                })
+                
             })
 
             .catch(error => {

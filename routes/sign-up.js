@@ -18,14 +18,14 @@ router.post('/', async function (req, res, next) {
         sequelize.query(`INSERT INTO users (name, email, password) VALUES('${name}', 
             '${email}', '${password}' )`, { type: sequelize.QueryTypes.INSERT })
         .then((result) => {
-            res.send({ message: 'User is registered', status: 201})
+            res.status(201).send('User is registered');
         })
         .catch((err) => {
             console.log(err)
         })
 
     } else {
-        res.send({ message: 'User with this name is already registered', status: 403 })
+        res.status(403).send('User with this name is already registered');
     }
 });
 

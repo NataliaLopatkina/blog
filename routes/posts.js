@@ -21,7 +21,7 @@ router.get('/', async function (req, res) {
         }
 
         else {
-            res.send({message: 'Posts not found!', status: 404})
+            res.status(404).send('Posts not found!');
         }
 
     } else {
@@ -36,7 +36,7 @@ router.get('/', async function (req, res) {
         }
 
         else {
-            res.send({ message: 'Posts not found!', status: 404 })
+            res.status(404).send('Posts not found!');
         }
     }
 });

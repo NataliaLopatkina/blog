@@ -22,13 +22,13 @@ router.post('/', function (req, res) {
     const id = decodedToken.id;
 
     if (title === '' || text === '' ) {
-        res.send({ message: 'Title, text are required!', status: 422});
+        res.status(422).send('Title, text are required!');
 
     } else {
         sequelize.query(`INSERT INTO posts (title, text, date, author_id) VALUES('${title}',
         '${text}', '${new Date().toISOString()}', ${id})`, { type: sequelize.QueryTypes.SELECT })
-
-        res.send({ message: 'Post added!', status: 201 });
+        
+        res.status(201).send('Post added');
     }
 });
 

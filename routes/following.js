@@ -26,7 +26,7 @@ router.post('/', async function (req, res) {
         await sequelize.query(`DELETE FROM followers WHERE (follower = '${myID}' 
         AND following = '${following}')`)
 
-        res.send({ message: 'You are removed from the subscribers of this user', status: 204})
+        res.status(204).send('You are removed from the subscribers of this user');
     }
 
     else {
@@ -34,7 +34,7 @@ router.post('/', async function (req, res) {
         { type: sequelize.QueryTypes.INSERT })
 
         .then((result) => {
-            res.send({ message: 'You are added to the followers list of this user.', status: 201})
+            res.status(201).send('You are added to the followers list of this user.');
         })
         .catch((err) => {
             console.log(err)

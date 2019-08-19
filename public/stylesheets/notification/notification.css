@@ -1,7 +1,7 @@
 .notification {
-    background: rgba(225, 36, 0, 0.3);
-    padding: 10px 20px;
-    border: 1px solid red;
+    background: #ffdce0;
+    padding: 10px;
+    border: 1px solid #86181d;
     border-radius: 10px;
     margin-bottom: 20px;
     display: flex;
@@ -19,13 +19,14 @@
 }
 
 .notification__text {
-    font-size: 18px;
-    color: red;
+    font-size: 16px;
+    color: #86181d;
 }
 
 .notification__button {
     font-family: 'Arial';
-    font-size: 16px;
+    font-size: 14px;
+    color: #86181d;
     border: none;
     background: none;
     outline: none;

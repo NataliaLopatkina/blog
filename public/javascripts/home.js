@@ -21,8 +21,6 @@ class DataService {
             const { users } = response.data;
             const errorMessage = document.querySelector('.error');
 
-            console.log(user)
-
             if (users.length === 0) {
                 errorMessage.classList.add('active');
 
@@ -31,6 +29,48 @@ class DataService {
                     const name = item.name;
                     const id = item.id;
                     user.createUser(name, id);
+                })
+
+                const buttonSort = document.querySelector('.button--asd');
+
+                buttonSort.addEventListener('click', function() {
+                    users.sort((prev, next) => {
+                        if (prev.name < next.name) return -1;
+                        if (prev.name > next.name) return 1
+                    })
+
+                    const userActive = document.querySelectorAll('.user');
+
+                    userActive.forEach((item) => {
+                        item.remove();
+                    })
+
+                    users.forEach(item => {
+                        const name = item.name;
+                        const id = item.id;
+                        user.createUser(name, id);
+                    })
+                })
+
+                const buttonSortDesc = document.querySelector('.button--desc');
+
+                buttonSortDesc.addEventListener('click', function () {
+                    users.sort((prev, next) => {
+                        if (prev.name < next.name) return -1;
+                        if (prev.name > next.name) return 1
+                    })
+
+                    const userActive = document.querySelectorAll('.user');
+
+                    userActive.forEach((item) => {
+                        item.remove();
+                    })
+
+                    users.reverse().forEach(item => {
+                        const name = item.name;
+                        const id = item.id;
+                        user.createUser(name, id);
+                    })
                 })
 
                 errorMessage.classList.remove('active');
@@ -44,39 +84,6 @@ class DataService {
 
                         .then((res) => {
                             const status = res.data.status;
-                            if (status === 201) {
-                                if (document.querySelectorAll('.notification').length > 0) {
-                                    const notificationBlock = document.querySelectorAll('.notification');
-                                    notificationBlock.remove();
-
-                                    const text = 'You are added to the list followers of this user';
-                                    const type = 'not-error';
-                                    notification.createNotification(text, type);
-                                    notification.deleteNotification();
-                                    
-                                } else {
-                                    const text = 'You are added to the list followers of this user';
-                                    const type = 'not-error';
-                                    notification.createNotification(text, type);
-                                    notification.deleteNotification();
-                                }
-
-                            } else if (status === 204) {
-                                if (document.querySelectorAll('.notification').length > 0) {
-                                    const notificationBlock = document.querySelector('.notification');
-                                    notificationBlock.remove();
-
-                                    const text = 'You are removed to the list followers of this user';
-                                    const type = 'not-error';
-                                    notification.createNotification(text, type);
-                                    notification.deleteNotification();
-                                } else {
-                                    const text = 'You are removed to the list followers of this user';
-                                    const type = 'not-error';
-                                    notification.createNotification(text, type);
-                                    notification.deleteNotification();
-                                }
-                            }
                         })
 
                         .catch((error)=> {
