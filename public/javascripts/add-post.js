@@ -15,25 +15,26 @@ class AddPost {
 
 let addPost = new AddPost()
 
-const buttonAdd = document.querySelector('.add-post__button');
+const formSend = document.querySelector('.add-post__form');
 
-buttonAdd.addEventListener('click', ()=> {
+formSend.addEventListener('submit', ()=> {
     const inputs = document.querySelectorAll('input');
-
     this.userData = {}
 
-    inputs.forEach((item) => {
-        const id = item.getAttribute('id');
+    if (email.validity.valid && password.validity.valid) {
+        inputs.forEach((item) => {
+            const id = item.getAttribute('id');
 
-        if (id === 'title') {
-            this.userData.title = item.value;
+            if (id === 'title') {
+                this.userData.title = item.value;
 
-        } else if (id === 'text') {
-            this.userData.text = item.value;
-        }
-    })
+            } else if (id === 'text') {
+                this.userData.text = item.value;
+            }
+        })
 
-    addPost.sendData(userData);
+        addPost.sendData(userData);
+    }
 })
 
 class ErrorMessage {

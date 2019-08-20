@@ -9,6 +9,4 @@ sequelize.sync()
     console.log('Databases and tables created!')
 })
 
-module.exports = {
-    sequelize
-}
+module.exports = sequelize;

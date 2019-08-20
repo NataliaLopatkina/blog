@@ -1,12 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
-    dialect: 'postgres',
-});
+const sequelize = require('../sequelize');
 
 router.get('/', async function (req, res) {
     const { id } = req.query;

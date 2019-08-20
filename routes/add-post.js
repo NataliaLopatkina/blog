@@ -1,25 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
-    dialect: 'postgres',
-});
+const sequelize = require('../sequelize');
 
 router.get('/', function (req, res) {
-    const token = req.cookies.token;
-    const decodedToken = jwt.decode(token);
-    const name = decodedToken.name;
-
-    res.render('../views/add-post', { user: name });
+    res.render('../views/add-post', { user: req.user.name });
 });
 
 router.post('/', function (req, res) {
-    const { title, text } = req.body;
-    const token = req.cookies.token;
-    const decodedToken = jwt.decode(token);
-    const id = decodedToken.id;
+    const id = req.user.id;
 
     if (title === '' || text === '' ) {
         res.status(422).send('Title, text are required!');

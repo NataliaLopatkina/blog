@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const sequelize = require('../sequelize');
 
 router.get('/', function (req, res) {
     res.render('../views/sign-in');
-});
-
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
-    dialect: 'postgres',
 });
 
 router.post('/', async function (req, res) {

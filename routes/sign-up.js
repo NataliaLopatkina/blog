@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Sequelize = require('sequelize');
+const sequelize = require('../sequelize');
 
 router.get('/', function (req, res) {
     res.render('../views/sign-up');
-});
-
-const sequelize = new Sequelize('social', 'postgres', 'tosovu96', {
-    dialect: 'postgres',
 });
 
 router.post('/', async function (req, res, next) {
