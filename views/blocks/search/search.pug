@@ -1,8 +1,9 @@
 mixin search(obj)
     div(class="form search")&attributes(attributes)
-        form(class="search__form" onsubmit = "return false")
-            input(type="text" class="search__input form__input" placeholder="Search")
+        form(class="search__form" onsubmit = "return false" novalidate)
+            input(type="text" class="search__input form__input" placeholder="Search" required)
             button(type="submit" class="button search__button") Search
+            span(class="error") This field is require!
 
             include ../sort/sort.pug
             +sort()(class="search__sort")

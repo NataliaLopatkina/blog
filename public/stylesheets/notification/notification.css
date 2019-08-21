@@ -3,10 +3,16 @@
     padding: 10px;
     border: 1px solid #86181d;
     border-radius: 10px;
-    margin-bottom: 20px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 30px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1000000;
 }
 
 .notification--not-error {

@@ -1,19 +1,18 @@
-class SignIn extends Authentication {
+class SignIn {
     constructor(){
-        super();
-
         const formSend = document.querySelector('.form__content');
 
         formSend.addEventListener('submit', (event) => {
             event.preventDefault();
+            validation.validationForm();
 
-            this.validationForm();
-            this.userData = {}
-            this.getUserData();
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const userData = { email: email.value, password: password.value };
 
             if (email.validity.valid && password.validity.valid) {
 
-                axios.post('/', this.userData )
+                axios.post('/', userData)
 
                 .then(response => {
                     window.location.assign('/home');
@@ -21,17 +20,38 @@ class SignIn extends Authentication {
 
                 .catch(error => {
                     const text = 'Incorected login or password!';
-                    this.createNotification(text);
-                    this.deleteNotification();
+                    const page = document.querySelector('.page__container');
+                    notification.createNotification(text);
+                    notification.addNotification(page);
+                    notification.deleteNotification();
                 })
             }
         })
+    }
 
-        this.togglePassword();
+    togglePassword() {
+        let buttonShowPassword = document.querySelector('.form__password-button');
+        let inputPassword = document.getElementById('password');
+
+        buttonShowPassword.addEventListener('click', function () {
+            event.preventDefault();
+            event.stopPropagation();
+            buttonShowPassword.classList.toggle('not-show');
+
+            let typeUnput = inputPassword.getAttribute('type');
+
+            if (typeUnput == 'password') {
+                inputPassword.setAttribute('type', 'text');
+            } else {
+                inputPassword.setAttribute('type', 'password');
+            }
+        })
     }
 }
 
 let signIn = new SignIn();
+
+signIn.togglePassword();
 
 const buttonSignUp = document.querySelector('.registration__button');
 

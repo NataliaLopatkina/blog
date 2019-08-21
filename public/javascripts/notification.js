@@ -1,23 +1,21 @@
 class Notification {
     createNotification(text) {
-        const notification = document.createElement('div');
-        notification.classList.add('notification');
-        authenticationForm.insertBefore(notification, authenticationFormContent);
+        this.notification = document.createElement('div');
+        this.notification.classList.add('notification');
 
         const notificationText = document.createElement('span');
         notificationText.classList.add('notification__text');
         notificationText.innerText = text;
-        notification.appendChild(notificationText);
+        this.notification.appendChild(notificationText);
 
         const notificationButton = document.createElement('button');
         notificationButton.classList.add('notification__button');
         notificationButton.innerText = 'X';
-        notification.appendChild(notificationButton);
+        this.notification.appendChild(notificationButton);
     }
 
     addNotification(parentBlock) {
-        const notificationContainer = document.querySelector('.notification');
-        parentBlock.appendChild(notificationContainer);
+        parentBlock.appendChild(this.notification);
     }
 
     deleteNotification() {

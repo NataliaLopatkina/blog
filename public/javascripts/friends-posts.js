@@ -1,5 +1,5 @@
-class MyPost {
-    constructor(){
+class Posts {
+    constructor() {
         function getCookie(name) {
             var value = "; " + document.cookie;
             var parts = value.split("; " + name + "=");
@@ -26,16 +26,17 @@ class MyPost {
         axios.get('http://localhost:3000/posts', {
             params: {
                 id,
-                type: 'myPost',
             }
         })
 
         .then(response => {
-            const { posts } = response.data;
-            const [arrayPosts] = posts;
+            const { friendsPosts } = response.data;
+            const arrayPosts = friendsPosts[0];
 
             post.printPosts(arrayPosts);
             post.slicePostText();
+
+            console.log(response)
         })
 
         .catch(error => {
@@ -47,6 +48,12 @@ class MyPost {
             notification.deleteNotification();
         })
     }
+    sortPosts(arrayPosts) {
+        arrayPosts.sort((prev, next) => {
+            if (prev.date < next.date) return -1;
+            if (prev.date > next.date) return 1;
+        })
+    }
 }
 
-let myPost = new MyPost();
+let posts = new Posts();

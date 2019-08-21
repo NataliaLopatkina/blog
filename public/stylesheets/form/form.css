@@ -60,6 +60,10 @@
     display: block;
 }
 
+.form__input.invalid + .search__button + .error {
+    display: block;
+}
+
 .form__password {
     position: relative;
 }

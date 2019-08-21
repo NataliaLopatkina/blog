@@ -6,7 +6,7 @@ router.get('/', function (req, res) {
     res.render('../views/sign-up');
 });
 
-router.post('/', async function (req, res, next) {
+router.post('/', async function (req, res) {
     const { name, email, password } = req.body;
     const result = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`, { type: sequelize.QueryTypes.SELECT })
 

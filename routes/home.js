@@ -4,6 +4,7 @@ const sequelize = require('../sequelize');
 
 router.get('/', function (req, res) {
     res.render('../views/home', {user: req.user.name});
+    console.log(req.user.name)
 });
 
 router.post('/', function(req, res) {})
