@@ -26,8 +26,8 @@ class SignUp {
         }
     }
 
-    togglePassword() {
-        this.buttonShowPassword.classList.toggle('not-show');
+    togglePassword(buttonPassword) {
+        buttonPassword.classList.toggle('not-show');
         const inputPassword = document.getElementById('password');
         const typeUnput = inputPassword.getAttribute('type');
 
@@ -49,11 +49,11 @@ class SignUp {
             this.formSubmit()
         })
 
-        this.buttonShowPassword = document.querySelector('.form__password-button');
-        this.buttonShowPassword.addEventListener('click', () => {
+        const buttonPassword = document.querySelector('.form__password-button');
+        buttonPassword.addEventListener('click', () => {
             event.preventDefault();
             event.stopPropagation();
-            this.togglePassword()
+            this.togglePassword(buttonPassword)
         })
 
         const buttonSignIn = document.querySelector('.registration__button');

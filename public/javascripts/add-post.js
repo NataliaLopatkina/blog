@@ -1,18 +1,17 @@
 class AddPost {
     constructor() {
-        const formSend = document.querySelector('.form');
+        this.init();
+    }
 
-        formSend.addEventListener('submit', () => {
-            event.preventDefault();
+    formSubmit() {
+        validation.validationForm();
 
-            validation.validationForm();
+        const title = document.getElementById('title');
+        const text = document.getElementById('text-post');
+        const postData = { title: title.value, text: text.value }
 
-            const title = document.getElementById('title');
-            const text = document.getElementById('text-post');
-            const postData = { title: title.value, text: text.value }
-
-            if (title.validity.valid && text.validity.valid) {
-                axios.post('/add-post', postData)
+        if (title.validity.valid && text.validity.valid) {
+            axios.post('/add-post', postData)
 
                 .then(response => {
                     window.location.assign('/my-posts')
@@ -21,7 +20,19 @@ class AddPost {
                 .catch(error => {
                     console.log(error)
                 })
-            }
+        }
+    }
+
+    init() {
+        const formSend = document.querySelector('.form');
+        formSend.addEventListener('submit', () => {
+            event.preventDefault();
+            this.formSubmit();
+        })
+
+        const buttonMenu = document.querySelector('.button-menu');
+        buttonMenu.addEventListener('click', ()=> {
+            menu.toggleMenu(buttonMenu);
         })
     }
 }
