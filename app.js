@@ -25,8 +25,8 @@ app.use('/users', verifyToken, userRouter);
 app.use('/my-posts', verifyToken, myPostsRouter);
 app.use('/friends-posts', verifyToken, friendsPostsRouter);
 app.use('/add-post', verifyToken, addPostRouter);
-app.use('/following', followingRouter);
-app.use('/posts', postsRouter);
+app.use('/following', verifyToken, followingRouter);
+app.use('/posts', verifyToken, postsRouter);
 
 module.exports = {
     app,

@@ -16,18 +16,8 @@
     box-sizing: border-box;
 }
 
-.posts-content__buttons-sort {
-    display: flex;
+.posts-content__sort {
     margin-bottom: 20px;
-}
-
-.posts-content__button-sort {
-    width: calc(100% - 30px);
-    margin-right: 30px;
-}
-
-.posts-content__button-sort:last-child {
-    margin-right: 0;
 }
 
 @media (max-width: 991px) {

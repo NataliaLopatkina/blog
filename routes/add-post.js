@@ -8,6 +8,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    const { title, text } = req.body;
     const id = req.user.id;
 
     if (title === '' || text === '' ) {

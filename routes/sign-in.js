@@ -13,7 +13,9 @@ router.post('/', async function (req, res) {
     const result = await sequelize.query(`SELECT * FROM users WHERE 
     (email = '${email}') AND (password = '${password}')`)
 
-    if (result[0].length === 0) {
+    const user = result[0][0]
+
+    if (!user) {
         res.status(402).send('User is not registered');
     } else {
         

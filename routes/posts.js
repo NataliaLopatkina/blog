@@ -3,7 +3,7 @@ const router = express.Router();
 const sequelize = require('../sequelize');
 
 router.get('/', async function (req, res) {
-    const { id } = req.query;
+    const { id } = req.user;
 
     if (req.query.type === 'myPost') {
         const result = await sequelize.query(`SELECT * FROM posts WHERE author_id = ${id}`)
@@ -23,7 +23,7 @@ router.get('/', async function (req, res) {
         where users.id in (SELECT following from followers where follower = '${id}') 
         and posts.author_id is not null`)
 
-        if (result.length > 0) {
+        if (result[0].length > 0) {
             res.send({
                 friendsPosts: result
             })

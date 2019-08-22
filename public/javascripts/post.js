@@ -1,6 +1,6 @@
 class Post {
     constructor() {}
-    createPost(titlePost, textPost, datePost) {
+    createPost(titlePost, textPost, datePost, authorPost) {
         this.post = document.createElement('div');
         this.post.classList.add('posts-item');
 
@@ -15,6 +15,13 @@ class Post {
         this.post.appendChild(text);
         text.classList.add('posts-item__text');
 
+        if (authorPost != undefined) {
+            const author = document.createElement('p');
+            this.post.appendChild(author);
+            author.innerText = 'Posted by ' + authorPost;
+            author.classList.add('posts-item__autor');
+        }
+
         const date = document.createElement('time');
         this.post.appendChild(date);
         date.innerText = datePost;
@@ -26,26 +33,30 @@ class Post {
         postsList.appendChild(this.post)
     }
 
+    deletePosts() {
+        const posts = document.querySelectorAll('.posts-item');
+        posts.forEach((item)=> {
+            item.remove();
+        })
+    }
+
     printPosts(arrayPosts) {
         arrayPosts.forEach(function (item) {
             const postTitle = item.title;
             const postText = item.text;
             const postDate = item.date;
+            const postAuthor = item.name;
 
-            post.createPost(postTitle, postText, postDate);
-            post.addPost();
+            const maxLengthText = 210;
 
-        })
-    }
-
-    slicePostText() {
-        const maxLengthText = 210;
-        const textPost = document.querySelectorAll('.posts-item__text');
-
-        textPost.forEach(function (item) {
-            if (item.textContent.length > maxLengthText) {
-                var visisblePathText = item.textContent.slice(0, maxLengthText) + ' ...';
-                item.innerText = visisblePathText;
+            if (postText.length > maxLengthText) {
+                var visiblePathText = postText.slice(0, maxLengthText) + ' ...';
+                const newText = visiblePathText;
+                post.createPost(postTitle, newText, postDate, postAuthor);
+                post.addPost();
+            } else {
+                post.createPost(postTitle, postText, postDate, postAuthor);
+                post.addPost();
             }
         })
     }

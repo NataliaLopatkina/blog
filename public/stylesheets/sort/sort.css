@@ -1,11 +1,7 @@
-.sort {
-    display: none;
-}
-
 .sort.is-active {
     display: flex;
 }
 
 .sort__button {
-    margin-right: 20px;
+    width: 50px;
 }
