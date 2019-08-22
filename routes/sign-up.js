@@ -8,9 +8,9 @@ router.get('/', function (req, res) {
 
 router.post('/', async function (req, res) {
     const { name, email, password } = req.body;
-    const result = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`, { type: sequelize.QueryTypes.SELECT })
+    const result = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`)
 
-    if (!result[0]) {
+    if (result[0].length === 0) {
         sequelize.query(`INSERT INTO users (name, email, password) VALUES('${name}', 
             '${email}', '${password}' )`, { type: sequelize.QueryTypes.INSERT })
         .then((result) => {

@@ -14,7 +14,8 @@ class Notification {
         this.notification.appendChild(notificationButton);
     }
 
-    addNotification(parentBlock) {
+    addNotification() {
+        const parentBlock = document.querySelector('.page__container');
         parentBlock.appendChild(this.notification);
     }
 
@@ -25,6 +26,12 @@ class Notification {
         buttonDelete.addEventListener('click', () => {
             notification.remove();
         })
+    }
+
+    showNotification(text, parentBlock) {
+        this.createNotification(text);
+        this.addNotification(parentBlock);
+        this.deleteNotification();
     }
 }
 

@@ -9,19 +9,18 @@ router.get('/', function (req, res) {
 
 router.post('/', async function (req, res) {
     const { email, password } = req.body;
+
     const result = await sequelize.query(`SELECT * FROM users WHERE 
     (email = '${email}') AND (password = '${password}')`)
 
-    const user = result[0][0];
-
-    if (!user) {
+    if (result[0].length === 0) {
         res.status(402).send('User is not registered');
     } else {
         
         const token = jwt.sign({ id: user.id, name: user.name, email: user.email, password: user.password }, 
             'secret', { expiresIn: '1h' });
 
-        res.cookie('token', token, { maxAge: 900000, httpOnly: false });
+        res.cookie('token', token, { maxAge: 900000*60, httpOnly: false });
         res.status(200).send('User found!');
     }
 });

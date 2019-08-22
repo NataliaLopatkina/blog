@@ -1,60 +1,68 @@
 class SignIn {
     constructor(){
-        const formSend = document.querySelector('.form__content');
+        this.init(); 
+    }
 
-        formSend.addEventListener('submit', (event) => {
-            event.preventDefault();
-            validation.validationForm();
+    formSubmit() {
+        validation.validationForm();
 
-            const email = document.getElementById('email');
-            const password = document.getElementById('password');
-            const userData = { email: email.value, password: password.value };
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const userData = { email: email.value, password: password.value };
 
-            if (email.validity.valid && password.validity.valid) {
+        if (email.validity.valid && password.validity.valid) {
 
-                axios.post('/', userData)
+            axios.post('/', userData)
 
-                .then(response => {
-                    window.location.assign('/home');
-                })
+            .then(response => {
+                window.location.assign('/home');
+            })
 
-                .catch(error => {
-                    const text = 'Incorected login or password!';
-                    const page = document.querySelector('.page__container');
-                    notification.createNotification(text);
-                    notification.addNotification(page);
-                    notification.deleteNotification();
-                })
-            }
-        })
+            .catch(error => {
+                const text = 'Incorected login or password!';
+                notification.showNotification(text);
+            })
+        }
     }
 
     togglePassword() {
-        let buttonShowPassword = document.querySelector('.form__password-button');
-        let inputPassword = document.getElementById('password');
+        this.buttonShowPassword.classList.toggle('not-show');
+        const inputPassword = document.getElementById('password');
+        const typeUnput = inputPassword.getAttribute('type');
 
-        buttonShowPassword.addEventListener('click', function () {
+        if (typeUnput == 'password') {
+            inputPassword.setAttribute('type', 'text');
+        } else {
+            inputPassword.setAttribute('type', 'password');
+        }
+    }
+
+    redirectSignUp() {
+        window.location.assign('/sign-up');
+    }
+
+    init() {
+        const formSend = document.querySelector('.form__content');
+
+        formSend.addEventListener('submit', () => {
+            event.preventDefault();
+            this.formSubmit()
+        })
+
+        this.buttonShowPassword = document.querySelector('.form__password-button');
+
+        this.buttonShowPassword.addEventListener('click', () => {
             event.preventDefault();
             event.stopPropagation();
-            buttonShowPassword.classList.toggle('not-show');
+            this.togglePassword()
+        })
 
-            let typeUnput = inputPassword.getAttribute('type');
+        const buttonSignUp = document.querySelector('.registration__button');
 
-            if (typeUnput == 'password') {
-                inputPassword.setAttribute('type', 'text');
-            } else {
-                inputPassword.setAttribute('type', 'password');
-            }
+        buttonSignUp.addEventListener('click', () => {
+            this.redirectSignUp()
         })
     }
 }
 
 let signIn = new SignIn();
-
-signIn.togglePassword();
-
-const buttonSignUp = document.querySelector('.registration__button');
-
-buttonSignUp.addEventListener('click', ()=> {
-    window.location.assign('/sign-up');
-})

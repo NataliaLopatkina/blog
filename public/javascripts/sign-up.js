@@ -1,62 +1,66 @@
 class SignUp {
     constructor() {
-        const formSend = document.querySelector('.form__content');
+        this.init();
+    }
 
-        formSend.addEventListener('submit', (event) => {
-            event.preventDefault();
+    formSubmit() {
+        validation.validationForm();
 
-            validation.validationForm();
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const userData = { name: name.value, email: email.value, password: password.value }
 
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const password = document.getElementById('password');
-            const userData = {name: name.value, email: email.value, password: password.value}
+        if (name.validity.valid && email.validity.valid && password.validity.valid) {
 
-            if (name.validity.valid &&email.validity.valid && password.validity.valid) {
+            axios.post('/sign-up', userData)
 
-                axios.post('/sign-up', userData)
+            .then(response => {
+                window.location.assign('/');
+            })
 
-                .then(response => {
-                    window.location.assign('/');
-                })
-
-                .catch(error => {
-                    const text = 'User with the same name already exists!';
-                    const page = document.querySelector('.page__container');
-                    notification.createNotification(text);
-                    notification.addNotification(page);
-                    notification.deleteNotification();
-                })
-            }
-        })
+            .catch(error => {
+                const text = 'User with the same name already exists!';
+                notification.showNotification(text);
+            })
+        }
     }
 
     togglePassword() {
-        let buttonShowPassword = document.querySelector('.form__password-button');
-        let inputPassword = document.getElementById('password');
+        this.buttonShowPassword.classList.toggle('not-show');
+        const inputPassword = document.getElementById('password');
+        const typeUnput = inputPassword.getAttribute('type');
 
-        buttonShowPassword.addEventListener('click', function () {
+        if (typeUnput == 'password') {
+            inputPassword.setAttribute('type', 'text');
+        } else {
+            inputPassword.setAttribute('type', 'password');
+        }
+    }
+
+    redirectSignIn() {
+        window.location.assign('/');
+    }
+
+    init() {
+        const formSend = document.querySelector('.form__content');
+        formSend.addEventListener('submit', () => {
+            event.preventDefault();
+            this.formSubmit()
+        })
+
+        this.buttonShowPassword = document.querySelector('.form__password-button');
+        this.buttonShowPassword.addEventListener('click', () => {
             event.preventDefault();
             event.stopPropagation();
-            buttonShowPassword.classList.toggle('not-show');
+            this.togglePassword()
+        })
 
-            let typeUnput = inputPassword.getAttribute('type');
-
-            if (typeUnput == 'password') {
-                inputPassword.setAttribute('type', 'text');
-            } else {
-                inputPassword.setAttribute('type', 'password');
-            }
+        const buttonSignIn = document.querySelector('.registration__button');
+        buttonSignIn.addEventListener('click', () => {
+            this.redirectSignIn();
         })
     }
 }
 
 let signUp = new SignUp();
-
-signUp.togglePassword();
-
-const buttonSignIn = document.querySelector('.registration__button');
-
-buttonSignIn.addEventListener('click', () => {
-    window.location.assign('/');
-})
