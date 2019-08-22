@@ -15,15 +15,6 @@
     z-index: 1000000;
 }
 
-.notification--not-error {
-    background: rgba(0, 255, 0, 0.3);
-    border: 1px solid green;
-}
-
-.notification--not-error .notification__text{
-    color: green;
-}
-
 .notification__text {
     font-size: 16px;
     color: #86181d;
@@ -38,4 +29,17 @@
     outline: none;
     padding: 0;
     cursor: pointer;
+}
+
+.notification.not-error {
+    background: #98fb98;
+    border: 1px solid #006400;
+}
+
+.notification.not-error .notification__text {
+    color: #006400;
+}
+
+.notification.not-error .notification__button {
+    color: #006400;
 }

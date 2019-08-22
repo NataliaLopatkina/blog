@@ -1,5 +1,5 @@
 class Notification {
-    createNotification(text) {
+    createNotification(text, notError) {
         this.notification = document.createElement('div');
         this.notification.classList.add('notification');
 
@@ -12,6 +12,10 @@ class Notification {
         notificationButton.classList.add('notification__button');
         notificationButton.innerText = 'X';
         this.notification.appendChild(notificationButton);
+
+        if(notError) {
+            this.notification.classList.add('not-error')
+        }
     }
 
     addNotification() {
@@ -28,9 +32,9 @@ class Notification {
         })
     }
 
-    showNotification(text, parentBlock) {
-        this.createNotification(text);
-        this.addNotification(parentBlock);
+    showNotification(text, notError) {
+        this.createNotification(text, notError);
+        this.addNotification();
         this.deleteNotification();
     }
 }

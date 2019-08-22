@@ -14,10 +14,8 @@ block content
         include blocks/search/search.pug
         +search(obj)(class="search-content__form")
 
-        button(class="button search-content__button-sort") &#8593; &#8595;
+        div(class="sort posts-content__sort")
+            button(class="button sort__button") &#8593; &#8595;
 
         div(class="users")
-
-        div(class="error error--user")
-            p(class="error__text") User not found!
 

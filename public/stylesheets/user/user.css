@@ -22,7 +22,7 @@
     padding: 0;
 }
 
-.user__following.friend {
+.user__following.active {
     background: url('../../images/svg-icon/like-active.svg');
 }
 
