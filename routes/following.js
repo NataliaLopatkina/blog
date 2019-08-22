@@ -11,11 +11,7 @@ router.get('/', function (req, res) {
 router.post('/', async function (req, res) {
     const myID = req.user.id;
 
-    console.log(myID)
-
     const { following } = req.body;
-
-    console.log(following)
 
     // const followingUser = await sequelize.query(`SELECT*FROM followers WHERE (follower = '${myID}' 
     // AND following = '${following}')`)

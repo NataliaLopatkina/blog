@@ -1,92 +1,58 @@
 class Home {
     constructor() {
-        const buttonSearch = document.querySelector('.search__button');
+        this.init();
+    }
 
-        buttonSearch.addEventListener('click', () => {
-            event.preventDefault();
-
-            validation.validationForm();
-            const search = document.querySelector('.search__input');
-            const keyword = search.value;
-
-            if (search.validity.valid) {
-                axios.get('http://localhost:3000/users', {
-                    params: {
-                        keyword,
-                    }
-                })
-
-                .then(response => {
-                    if (document.querySelectorAll('.user').length > 0 ) {
-                        user.deleteUsers();
-                    }
-                    const { users } = response.data;
-
-                    if (users.length > 0) {
-                        user.printUsers(users);
-                        this.buttonSort = document.querySelector('.search-content__button-sort');
-                        this.buttonSort.classList.add('is-active');
-                    }
-
-                    this.buttonSort.addEventListener('click', ()=> {
-                        this.buttonSort.classList.toggle('.search-content__button-sort--desc');
-
-                        if (this.buttonSort.classList.contains('search-content__button-sort--desc')) {
-                            this.buttonSort.classList.remove('search-content__button-sort--desc');
-                            this.sortUsers(users)
-                            user.deleteUsers();
-                            user.printUsers(users.reverse());
-                        } else {
-                            this.buttonSort.classList.add('search-content__button-sort--desc');
-                            this.sortUsers(users)
-                            user.deleteUsers();
-                            user.printUsers(users);
-                        }
-                    })
-
-                    // const buttonFollowing = document.querySelectorAll('.user__following');
-
-                    // buttonFollowing.forEach((item)=> {
-                    //     this.addFollowing(item);
-                    // })
-                })
-
-                .catch(error => {
-                    if (document.querySelectorAll('.user').length > 0) {
-                        user.deleteUsers();
-                    }
-                    const text = 'Users are not found!';
-                    const page = document.querySelector('.page__container');
-                    notification.createNotification(text);
-                    notification.addNotification(page);
-                    notification.deleteNotification();
-                })
+    getUsers(keyword) {
+        axios.get('http://localhost:3000/users', {
+            params: {
+                keyword,
             }
+        })
+
+        .then(response => {
+            const { users } = response.data;
+            user.printUsers(users);
+
+            const buttonsFollowing = document.querySelectorAll('.user__following');
+            buttonsFollowing.forEach((item)=> {
+                item.addEventListener('click', ()=> {
+                    const following = item.getAttribute('data-like');
+                    this.submitFollowing(following);
+                })
+            })
+        })
+
+        .catch(error => {
+            user.deleteUsers();
+            const text = 'Users not found!';
+            notification.showNotification(text);
         })
     }
 
-    // addFollowing(item) {
-    //     item.addEventListener('click', () => {
-    //         const following = item.getAttribute('data-like');
+    submitFollowing(following) {
+        axios.post('/following', { following: following })
 
-    //         axios.post('/following', { following: following })
+        .then((res) => {
+            console.log(res)
+        })
 
-    //         .then((res) => {
-    //             const status = res.data.status;
-    //         })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    //     })
-    // }
-
-    sortUsers(users) {
-        users.sort((prev, next) => {
-            if (prev.name < next.name) return -1;
-            if (prev.name > next.name) return 1;
+    init() {
+        const searchButton = document.querySelector('.search__button');
+        searchButton.addEventListener('click', ()=> {
+            const keyword = document.getElementById('search').value;
+            this.getUsers(keyword)
         })
     }
 }
 
 let home = new Home();
+
+
+
+

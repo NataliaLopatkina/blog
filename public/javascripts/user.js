@@ -32,6 +32,7 @@ class User {
     }
 
     printUsers(users) {
+        this.deleteUsers();
         users.forEach(item => {
             const name = item.name;
             const id = item.id;
