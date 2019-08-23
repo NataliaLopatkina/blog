@@ -12,36 +12,8 @@ class Home {
 
         .then(response => {
             const { users } = response.data;
-            user.printUsers(users);
-
-            const buttonsFollowing = document.querySelectorAll('.user__following');
-            buttonsFollowing.forEach((item)=> {
-                item.addEventListener('click', ()=> {
-                    if(item.classList.contains('active')) {
-                        item.classList.remove('active');
-                    } else {
-                        item.classList.add('active');
-                    }
-                    const following = item.getAttribute('data-like');
-                    this.submitFollowing(following);
-                })
-            })
-
-            const sortButton = document.querySelector('.sort__button');
-            sortButton.addEventListener('click', () => {
-                if (sortButton.classList.contains('sort__button--reverse')) {
-                    sortButton.classList.remove('sort__button--reverse');
-                    this.sortUsers(users);
-                    user.deleteUsers();
-                    user.printUsers(users.reverse());
-                    
-                } else {
-                    sortButton.classList.add('sort__button--reverse');
-                    this.sortUsers(users);
-                    user.deleteUsers();
-                    user.printUsers(users);
-                }
-            })
+            this.users = response.data.users
+            user.printUsers(this.users);
         })
 
         .catch(error => {
@@ -72,13 +44,6 @@ class Home {
         })
     }
 
-    sortUsers(users) {
-        users.sort((prev, next) => {
-            if (prev.name < next.name) return -1;
-            if (prev.name > next.name) return 1
-        })
-    }
-
     init() {
         const searchButton = document.querySelector('.search__button');
         searchButton.addEventListener('click', ()=> {
@@ -89,7 +54,5 @@ class Home {
 }
 
 let home = new Home();
-
-
 
 

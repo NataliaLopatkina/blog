@@ -19,14 +19,14 @@ html(lang="en")
                             p(class="header__user") Hi, !{user}
                 main(class="main")
                     div(class="box")
-                        include ../../blocks/nav/nav.pug
-                        +nav(data.activeElement)
-                        
-                        block content
+                        div(class="posts")
+                            include ../../blocks/nav/nav.pug
+                            +nav(data.activeElement)
+                            
+                            block content
 
             script(src="https://unpkg.com/axios/dist/axios.min.js")
             script(src="javascripts/notification.js")
-            script(src="javascripts/user.js")
+            script(src="javascripts/post.js")
             script(src="javascripts/menu.js")
             script(src="javascripts/" + data.script + ".js")
-            

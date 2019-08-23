@@ -15,11 +15,11 @@ class SignUp {
 
             axios.post('/sign-up', userData)
 
-            .then(response => {
+            .then(res => {
                 window.location.assign('/');
             })
 
-            .catch(error => {
+            .catch(err => {
                 const text = 'User with the same name already exists!';
                 notification.showNotification(text);
             })

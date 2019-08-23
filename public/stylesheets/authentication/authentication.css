@@ -11,10 +11,3 @@
     box-shadow: 0 0 10px rgb(100, 151, 177);
     border-radius: 10px;
 }
-
-.authentication--position {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    right: 0;
-}

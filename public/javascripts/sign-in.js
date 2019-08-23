@@ -14,11 +14,11 @@ class SignIn {
 
             axios.post('/', userData)
 
-            .then(response => {
+            .then(res => {
                 window.location.assign('/home');
             })
 
-            .catch(error => {
+            .catch(err => {
                 const text = 'Incorected login or password!';
                 notification.showNotification(text);
             })

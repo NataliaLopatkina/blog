@@ -8,3 +8,7 @@
     font-family: "El Messiri", "Times New Roman", serif;
     color: var(--main-color);
 }
+
+.page__authentication {
+    margin-top: 50px;
+}

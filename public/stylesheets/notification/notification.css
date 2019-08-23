@@ -1,22 +1,20 @@
 .notification {
     background: #ffdce0;
-    padding: 10px;
+    min-width: 250px;
+    padding: 20px 10px;
     border: 1px solid #86181d;
     border-radius: 10px;
-    width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 30px;
-    right: 0;
-    left: 0;
-    margin: auto;
+    right: 50px;
     z-index: 1000000;
 }
 
 .notification__text {
-    font-size: 16px;
+    font-size: 14px;
     color: #86181d;
 }
 
@@ -29,6 +27,7 @@
     outline: none;
     padding: 0;
     cursor: pointer;
+    margin-left: 15px;
 }
 
 .notification.not-error {

@@ -1,7 +1,8 @@
-.sort.is-active {
-    display: flex;
-}
-
 .sort__button {
     width: 50px;
+    display: none;
+}
+
+.sort__button.active {
+    display: block;
 }

@@ -31,11 +31,18 @@ class Notification {
             notification.remove();
         })
     }
+    
+    dissapearNotification() {
+        setTimeout(()=> {
+            this.notification.remove();
+        }, 3000)
+    }
 
     showNotification(text, notError) {
         this.createNotification(text, notError);
         this.addNotification();
         this.deleteNotification();
+        this.dissapearNotification();
     }
 }
 
