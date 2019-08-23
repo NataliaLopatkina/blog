@@ -30,7 +30,7 @@
     margin-left: 15px;
 }
 
-.notification.not-error {
+.notification--info {
     background: #98fb98;
     border: 1px solid #006400;
 }

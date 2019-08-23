@@ -10,17 +10,14 @@ class MyPost {
             }
         })
 
-        .then(response => {
-            const { posts } = response.data;
-            const [ arrayPosts ] = posts;
-
-            post.printPosts(arrayPosts);
+        .then(res => {
+            const { posts } = res.data;
+            post.renderPosts(posts);
         })
 
-        .catch(error => {
-            console.log(error)
+        .catch(err => {
             const text = 'Posts not found!';
-            notification.showNotification(text);
+            notification.error(text);
         })
     }
 

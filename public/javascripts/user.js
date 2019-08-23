@@ -17,9 +17,7 @@ class User {
         userFollowing.setAttribute('data-like', id);
 
         this.user.appendChild(userFollowing);
-    }
 
-    addUser() {
         const usersList = document.querySelector('.users');
         usersList.appendChild(this.user)
     }
@@ -31,13 +29,30 @@ class User {
         })
     }
 
-    printUsers(users) {
-        this.deleteUsers();
+    compareFunction(prev, next) {
+        if (prev.name < next.name) {
+            return -1
+        } else if (prev.name > next.name) {
+            return 1
+        }
+    }
+
+    sortUsers(users, sortType) {
+        if (sortType === 'ascend') {
+            users.sort(this.compareFunction)
+
+        } else if (sortType === 'descend') {
+            users.sort(this.compareFunction).reverse();
+        }
+    }
+
+    renderUsers(users, sortType) {
+        const self = this;
+        this.sortUsers(users, sortType)
         users.forEach(item => {
             const name = item.name;
             const id = item.id;
-            this.createUser(name, id);
-            this.addUser();
+            self.createUser(name, id);
         })
     }
 }

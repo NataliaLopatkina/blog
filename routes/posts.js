@@ -6,11 +6,11 @@ router.get('/', async function (req, res) {
     const { id } = req.user;
 
     if (req.query.type === 'myPost') {
-        const result = await sequelize.query(`SELECT * FROM posts WHERE author_id = ${id}`)
+        const [posts] = await sequelize.query(`SELECT * FROM posts WHERE author_id = ${id}`)
 
-        if (result.length > 0) {
+        if (posts.length > 0) {
             res.send({
-                posts: result
+                posts
             })
         }
 
@@ -19,13 +19,13 @@ router.get('/', async function (req, res) {
         }
 
     } else {
-        const result = await sequelize.query(`SELECT * FROM posts right join users on posts.author_id = users.id 
+        const [posts] = await sequelize.query(`SELECT * FROM posts right join users on posts.author_id = users.id 
         where users.id in (SELECT following from followers where follower = '${id}') 
         and posts.author_id is not null`)
 
-        if (result[0].length > 0) {
+        if (posts.length > 0) {
             res.send({
-                friendsPosts: result
+                friendsPosts: posts
             })
         }
 
@@ -35,6 +35,6 @@ router.get('/', async function (req, res) {
     }
 });
 
-router.post('/', async function (req, res) {});
+router.post('/', async function (req, res) { });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 class Notification {
-    createNotification(text, notError) {
+    createNotification(text, isError) {
         this.notification = document.createElement('div');
         this.notification.classList.add('notification');
 
@@ -13,36 +13,40 @@ class Notification {
         notificationButton.innerText = 'X';
         this.notification.appendChild(notificationButton);
 
-        if(notError) {
-            this.notification.classList.add('not-error')
+        if (isError) {
+            this.notification.classList.add('notification--error')
         }
-    }
+        else {
+            this.notification.classList.add('notification--info')
+        }
 
-    addNotification() {
         const parentBlock = document.querySelector('.page__container');
         parentBlock.appendChild(this.notification);
+
+        this.addDeleteHandler();
     }
 
-    deleteNotification() {
+
+    addDeleteHandler() {
         const buttonDelete = document.querySelector('.notification__button');
         const notification = document.querySelector('.notification');
 
         buttonDelete.addEventListener('click', () => {
             notification.remove();
         })
-    }
-    
-    dissapearNotification() {
-        setTimeout(()=> {
+
+        setTimeout(() => {
             this.notification.remove();
         }, 3000)
     }
 
-    showNotification(text, notError) {
-        this.createNotification(text, notError);
-        this.addNotification();
-        this.deleteNotification();
-        this.dissapearNotification();
+
+    info(text) {
+        this.createNotification(text, false);
+    }
+
+    error(text) {
+        this.createNotification(text, true);
     }
 }
 

@@ -8,17 +8,17 @@ router.get('/', function (req, res) {
 
 router.post('/', async function (req, res) {
     const { name, email, password } = req.body;
-    const result = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`)
+    const [[result]] = await sequelize.query(`SELECT FROM users WHERE (email = '${email}')`)
 
-    if (result[0].length === 0) {
+    if (!result) {
         sequelize.query(`INSERT INTO users (name, email, password) VALUES('${name}', 
             '${email}', '${password}' )`, { type: sequelize.QueryTypes.INSERT })
 
-        res.status(201).send('User is registered');
+        return res.status(201).send('User is registered');
 
-    } else {
-        res.status(403).send('User with this name is already registered');
     }
+    res.status(403).send('User with this email is already registered');
+
 });
 
 module.exports = router;

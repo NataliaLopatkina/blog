@@ -1,4 +1,6 @@
 class Validation {
+    constructor(){}
+    
     validationForm() {
         const inputs = document.querySelectorAll('.form__input');
 

@@ -3,31 +3,38 @@ class Posts {
         this.init();
     }
 
+    posts = [];
+    sortType = 'ascend';
+
     getPosts() {
-        axios.get('http://localhost:3000/posts', {
-            params: {}
-        })
+        axios.get('/posts')
 
-        .then(response => {
-            const { friendsPosts } = response.data;
-            const [arrayPosts] = friendsPosts;
+            .then(res => {
+                const { friendsPosts } = res.data;
+                this.posts = friendsPosts;
+                post.renderPosts(this.posts, this.sortType);
+            })
 
-            post.printPosts(arrayPosts);
-        })
-
-        .catch(error => {
-            const text = 'Posts not found!';
-            notification.showNotification(text);
-        })
+            .catch(err => {
+                const text = 'Posts not found!';
+                notification.error(text);
+            })
     }
 
     init() {
-        this.getPosts();
-
         const buttonMenu = document.querySelector('.button-menu');
         buttonMenu.addEventListener('click', () => {
             menu.toggleMenu(buttonMenu);
         })
+        
+        this.getPosts();
+
+        const buttonSort = document.querySelector('.sort__button');
+        buttonSort.addEventListener('click', () => {
+            this.sortType = this.sortType === "ascend" ? "descend" : "ascend";
+            post.deletePosts();
+            post.renderPosts(this.posts, this.sortType);
+        }, this)
     }
 }
 

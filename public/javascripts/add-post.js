@@ -13,13 +13,13 @@ class AddPost {
         if (title.validity.valid && text.validity.valid) {
             axios.post('/add-post', postData)
 
-                .then(response => {
-                    window.location.assign('/my-posts')
-                })
+            .then(res => {
+                window.location.assign('/my-posts')
+            })
 
-                .catch(error => {
-                    console.log(error)
-                })
+            .catch(err => {
+                console.log(err)
+            })
         }
     }
 

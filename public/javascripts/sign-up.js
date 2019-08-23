@@ -21,7 +21,7 @@ class SignUp {
 
             .catch(err => {
                 const text = 'User with the same name already exists!';
-                notification.showNotification(text);
+                notification.error(text);
             })
         }
     }

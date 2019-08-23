@@ -1,47 +1,65 @@
 class Post {
-    constructor() {}
+    constructor() { }
     createPost(titlePost, textPost, datePost, authorPost) {
-        this.post = document.createElement('div');
-        this.post.classList.add('posts-item');
+        const post = document.createElement('div');
+        post.classList.add('posts-item');
 
         const title = document.createElement('a');
 
-        this.post.appendChild(title);
+        post.appendChild(title);
         title.innerText = titlePost;
         title.classList.add('posts-item__title');
 
         const text = document.createElement('p');
         text.innerText = textPost;
-        this.post.appendChild(text);
+        post.appendChild(text);
         text.classList.add('posts-item__text');
 
-        if (authorPost != undefined) {
+        if (authorPost !== undefined) {
             const author = document.createElement('p');
-            this.post.appendChild(author);
+            post.appendChild(author);
             author.innerText = 'Posted by ' + authorPost;
             author.classList.add('posts-item__autor');
         }
 
         const date = document.createElement('time');
-        this.post.appendChild(date);
+        post.appendChild(date);
         date.innerText = datePost;
         date.classList.add('posts-item__text');
-    }
 
-    addPost() {
         const postsList = document.querySelector('.posts-list');
-        postsList.appendChild(this.post)
+        postsList.appendChild(post)
     }
 
     deletePosts() {
         const posts = document.querySelectorAll('.posts-item');
-        posts.forEach((item)=> {
+        posts.forEach((item) => {
             item.remove();
         })
     }
 
-    printPosts(arrayPosts) {
-        arrayPosts.forEach(function (item) {
+    compareFunction(prev, next) {
+        if (prev.date < next.date) {
+            return -1
+        } else if (prev.date > next.date) {
+            return 1
+        }
+    }
+
+    sortPosts(posts, sortType) {
+        if (sortType === 'ascend') {
+            posts.sort(this.compareFunction)
+
+        } else if (sortType === 'descend') {
+            posts.sort(this.compareFunction).reverse();
+        }
+    }
+
+    renderPosts(posts, sortType) {
+        const self = this;
+        this.sortPosts(posts, sortType)
+
+        posts.forEach(function (item) {
             const postTitle = item.title;
             const postText = item.text;
             const postDate = item.date;
@@ -49,15 +67,15 @@ class Post {
 
             const maxLengthText = 210;
 
+            let text;
             if (postText.length > maxLengthText) {
                 var visiblePathText = postText.slice(0, maxLengthText) + ' ...';
-                const newText = visiblePathText;
-                post.createPost(postTitle, newText, postDate, postAuthor);
-                post.addPost();
+                text = visiblePathText;
             } else {
-                post.createPost(postTitle, postText, postDate, postAuthor);
-                post.addPost();
+                text = postText;
             }
+
+            self.createPost(postTitle, text, postDate, postAuthor);
         })
     }
 }

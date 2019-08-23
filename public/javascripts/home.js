@@ -3,6 +3,9 @@ class Home {
         this.init();
     }
 
+    users = [];
+    sortType = 'ascend';
+
     getUsers(keyword) {
         axios.get('http://localhost:3000/users', {
             params: {
@@ -10,16 +13,17 @@ class Home {
             }
         })
 
-        .then(response => {
-            const { users } = response.data;
-            this.users = response.data.users
-            user.printUsers(this.users);
+        .then(res => {
+            const { users } = res.data;
+            this.users = users;
+            user.renderUsers(this.users, this.sortType);
         })
 
-        .catch(error => {
+        .catch(err => {
+            console.log(err)
             user.deleteUsers();
             const text = 'Users not found!';
-            notification.showNotification(text, false);
+            notification.error(text);
         })
     }
 
@@ -29,27 +33,39 @@ class Home {
         .then((res) => {
             if(res.status === 201) {
                 const text = 'You are added to the followers list of this user.'
-                const notError = true;
-                notification.showNotification(text, notError)
+                notification.notice(text);
 
             } else if (res.status === 204) {
-                const notError = true;
-                const text = 'You are removed from the subscribers of this user'
-                notification.showNotification(text, notError)
+                const text = 'You are removed from the subscribers of this user.'
+                notification.notice(text)
             }
         })
 
-        .catch((error) => {
-            console.log(error)
+        .catch((err) => {
+            console.log(err)
         })
     }
 
     init() {
+        const buttonMenu = document.querySelector('.button-menu');
+        buttonMenu.addEventListener('click', () => {
+            menu.toggleMenu(buttonMenu);
+        })
+
         const searchButton = document.querySelector('.search__button');
         searchButton.addEventListener('click', ()=> {
             const keyword = document.getElementById('search').value;
             this.getUsers(keyword)
+
+            console.log(this.users)
         })
+
+        const buttonSort = document.querySelector('.sort__button');
+        buttonSort.addEventListener('click', () => {
+            this.sortType = this.sortType === "ascend" ? "descend" : "ascend";
+            user.deleteUsers();
+            user.renderUsers(this.users, this.sortType);
+        }, this)
     }
 }
 

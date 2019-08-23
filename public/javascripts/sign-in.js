@@ -20,7 +20,7 @@ class SignIn {
 
             .catch(err => {
                 const text = 'Incorected login or password!';
-                notification.showNotification(text);
+                notification.error(text, true);
             })
         }
     }
@@ -35,10 +35,6 @@ class SignIn {
         } else {
             inputPassword.setAttribute('type', 'password');
         }
-    }
-
-    redirectSignUp() {
-        window.location.assign('/sign-up');
     }
 
     init() {
@@ -59,7 +55,7 @@ class SignIn {
 
         const buttonSignUp = document.querySelector('.registration__button');
         buttonSignUp.addEventListener('click', () => {
-            this.redirectSignUp()
+            window.location.assign('/sign-up');
         })
     }
 }
