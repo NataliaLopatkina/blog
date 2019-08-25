@@ -35,10 +35,10 @@
     border: 1px solid #006400;
 }
 
-.notification.not-error .notification__text {
+.notification--info .notification__text {
     color: #006400;
 }
 
-.notification.not-error .notification__button {
+.notification--info .notification__button {
     color: #006400;
 }

@@ -59,11 +59,11 @@ class Post {
         const self = this;
         this.sortPosts(posts, sortType)
 
-        posts.forEach(function (item) {
-            const postTitle = item.title;
-            const postText = item.text;
-            const postDate = item.date;
-            const postAuthor = item.name;
+        posts.forEach(post => {
+            const postTitle = post.title;
+            const postText = post.text;
+            const postDate = post.date;
+            const postAuthor = post.name;
 
             const maxLengthText = 210;
 

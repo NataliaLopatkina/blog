@@ -1,5 +1,9 @@
 class Notification {
     createNotification(text, isError) {
+        if (document.querySelectorAll('.notification').length > 0) {
+            this.removeNotification();
+        }
+
         this.notification = document.createElement('div');
         this.notification.classList.add('notification');
 
@@ -26,13 +30,17 @@ class Notification {
         this.addDeleteHandler();
     }
 
+    removeNotification() {
+        const notification = document.querySelector('.notification');
+        notification.remove();
+    }
+
 
     addDeleteHandler() {
         const buttonDelete = document.querySelector('.notification__button');
-        const notification = document.querySelector('.notification');
 
         buttonDelete.addEventListener('click', () => {
-            notification.remove();
+            this.removeNotification();
         })
 
         setTimeout(() => {
