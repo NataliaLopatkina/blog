@@ -3,7 +3,6 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const jwt = require('jsonwebtoken');
 const verifyToken = require('./middelwares/verify-token');
 const { signUpRouter, signInRouter, homeRouter, userRouter, addPostRouter, 
     myPostsRouter, followingRouter, postsRouter, friendsPostsRouter } = require('./routes');
@@ -28,7 +27,4 @@ app.use('/add-post', verifyToken, addPostRouter);
 app.use('/following', verifyToken, followingRouter);
 app.use('/posts', verifyToken, postsRouter);
 
-module.exports = {
-    app,
-    cookieParser
-};
+module.exports = app;

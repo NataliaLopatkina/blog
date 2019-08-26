@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
 
     } else {
         sequelize.query(`INSERT INTO posts (title, text, date, author_id) VALUES('${title}',
-        '${text}', '${new Date().toISOString()}', ${id})`, { type: sequelize.QueryTypes.SELECT })
+        '${text}', '${new Date().toISOString()}', ${id})`)
         
         res.status(201).send('Post added');
     }

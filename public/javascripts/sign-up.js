@@ -37,11 +37,7 @@ class SignUp {
             inputPassword.setAttribute('type', 'password');
         }
     }
-
-    redirectSignIn() {
-        window.location.assign('/');
-    }
-
+    
     init() {
         const formSend = document.querySelector('.form__content');
         formSend.addEventListener('submit', () => {
@@ -58,7 +54,7 @@ class SignUp {
 
         const buttonSignIn = document.querySelector('.registration__button');
         buttonSignIn.addEventListener('click', () => {
-            this.redirectSignIn();
+            window.location.assign('/');
         })
     }
 }

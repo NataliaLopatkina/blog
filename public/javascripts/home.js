@@ -4,7 +4,6 @@ class Home {
     }
 
     users = [];
-    buttonsFollowing = [];
     sortType = 'ascend';
 
     getUsers(keyword) {
@@ -20,8 +19,6 @@ class Home {
 
             user.deleteUsers();
             user.renderUsers(this.users, this.sortType);
-
-            this.buttonsFollowing = document.querySelectorAll('.user__following');
             this.updateFollowingHandlers();
         })
 
@@ -68,21 +65,33 @@ class Home {
             this.sortType = this.sortType === "ascend" ? "descend" : "ascend";
             user.deleteUsers();
             user.renderUsers(this.users, this.sortType);
+            this.updateFollowingHandlers();
         }, this)
     }
 
     updateFollowingHandlers() {
-        this.buttonsFollowing.forEach((item) => {
+        const buttonsFollowing = document.querySelectorAll('.user__following');
+
+        buttonsFollowing.forEach((item) => {
             item.addEventListener('click', ()=> {
                 const following = item.getAttribute('data-like');
                 return this.submitFollowing(following)
                 .then(()=>{
                     item.classList.toggle('active');
-                    //const buttonFollowing = Array.from(this.buttonsFollowing).find(item => item.dataset.like === following);
-                    //console.log(buttonFollowing)
-                    // buttonFollowing.classList.toggle('active');
-                    //user.deleteUsers();
-                    //user.renderUsers(this.users, this.sortType)
+
+                    this.users.map(user => {
+                        if(user.id == following) {
+                            if(user.follower) {
+                                user.follower = false;
+                            }
+
+                            else {
+                                user.follower = true;
+                            }
+                        }
+
+                        return user;
+                    })
                 })
             })
         })
@@ -90,5 +99,3 @@ class Home {
 }
 
 let home = new Home();
-
-
